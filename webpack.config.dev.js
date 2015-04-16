@@ -61,7 +61,6 @@ let plugins = [
 
 Object.keys(stylesheetLoaders).forEach(function (ext) {
   let loaders = stylesheetLoaders[ext];
-  if (Array.isArray(loaders)) loaders = loaders.join("!");
   stylesheetLoaders[ext] = "style-loader!" + loaders;
 });
 

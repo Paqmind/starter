@@ -25,6 +25,7 @@ let loaders = {
   "html": "html-loader",
   "md": ["html-loader", "markdown-loader"]
 };
+
 let stylesheetLoaders = {
   "css": "css-loader",
   "less": "css-loader!less-loader",
@@ -33,7 +34,7 @@ let stylesheetLoaders = {
 };
 
 let output = {
-  path: __dirname + "build/public",
+  path: __dirname + "/build/public",
   publicPath: "/_assets/",
   filename: "[name].js?[chunkhash]",
   chunkFilename: "[name].js?[chunkhash]",
@@ -41,10 +42,12 @@ let output = {
   libraryTarget: undefined,
   pathinfo: false,
 };
+
 let excludeFromStats = [
   /node_modules[\\\/]react(-router)?[\\\/]/,
   /node_modules[\\\/]items-store[\\\/]/
 ];
+
 let plugins = [
   function () {
     this.plugin("done", function (stats) {
@@ -59,13 +62,14 @@ let plugins = [
   new Webpack.PrefetchPlugin("react"),
   new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment")
 ];
+
 plugins.push(new Webpack.optimize.CommonsChunkPlugin("commons", "commons.js?[chunkhash]"));
 
 Object.keys(stylesheetLoaders).forEach(function (ext) {
   let loaders = stylesheetLoaders[ext];
-  if (Array.isArray(loaders)) loaders = loaders.join("!");
   stylesheetLoaders[ext] = ExtractTextPlugin.extract("style-loader", loaders);
 });
+
 plugins.push(new ExtractTextPlugin("[name].css?[contenthash]"));
 plugins.push(
   new Webpack.optimize.UglifyJsPlugin(),
@@ -91,15 +95,17 @@ export default {
 
   output: output,
 
+  // Loaders
   module: {
     loaders: loadersByExtension(loaders).concat(loadersByExtension(stylesheetLoaders))
   },
 
   resolveLoader: {
     root: __dirname + "/node_modules",
-    alias: {}
+    alias: {},
   },
 
+  // Externals
   externals: [],
 
   resolve: {
