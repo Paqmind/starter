@@ -2,8 +2,8 @@ var async = require("async");
 var React = require("react");
 var Router = require("react-router");
 var ItemsStore = require("items-store/ItemsStore");
-var routes = require("../frontend/" + __resourceQuery.substr(1) + "Routes");
-var storesDescriptions = require("../frontend/" + __resourceQuery.substr(1) + "StoresDescriptions");
+var routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
+var storesDescriptions = require("../frontend/" + __resourceQuery.substr(1) + "storesdescriptions");
 var html = require("../frontend/prerender.html");
 
 // create stores for prerending

@@ -10,15 +10,15 @@ if (!Object.assign)
 
 // export routes
 export default (
-	<Route name="app" path="/" handler={require("./Application")}>
-		<Route name="some-page" path="/some-page" handler={require("react-proxy!./SomePage")} />
-		<Route name="readme" path="/readme" handler={require("react-proxy!./Readme")} />
-		<Route name="todo" path="/todo" handler={require("./TodoPage")} >
-			<Route name="todolist" path="list/:list" handler={require("./TodoPage/TodoList")} />
-			<Route name="todoitem" path="item/:item" handler={require("./TodoPage/TodoItem")} />
+	<Route name="app" path="/" handler={require("./application")}>
+		<Route name="some-page" path="/some-page" handler={require("react-proxy!./somepage")} />
+		<Route name="readme" path="/readme" handler={require("react-proxy!./readme")} />
+		<Route name="todo" path="/todo" handler={require("./todopage")} >
+			<Route name="todolist" path="list/:list" handler={require("./todopage/todolist")} />
+			<Route name="todoitem" path="item/:item" handler={require("./todopage/todoitem")} />
 		</Route>
-		<Route name="home" path="/home" handler={require("./Home")} />
-		<DefaultRoute handler={require("./Home")} />
-		<NotFoundRoute handler={require("./NotFound")} />
+		<Route name="home" path="/home" handler={require("./home")} />
+		<DefaultRoute handler={require("./home")} />
+		<NotFoundRoute handler={require("./notfound")} />
 	</Route>
 );

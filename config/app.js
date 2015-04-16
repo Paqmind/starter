@@ -1,9 +1,9 @@
 var async = require("async");
 var React = require("react");
 var Router = require("react-router");
-var routes = require("../frontend/" + __resourceQuery.substr(1) + "Routes");
-var stores = require("../frontend/" + __resourceQuery.substr(1) + "Stores");
-var withTimeout = require("./withTimeout");
+var routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
+var stores = require("../frontend/" + __resourceQuery.substr(1) + "stores");
+var withTimeout = require("./with-timeout");
 var ReactUpdates = require("react/lib/ReactUpdates");
 
 var initialRun = true;
