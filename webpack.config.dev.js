@@ -1,5 +1,4 @@
 let Webpack = require("webpack");
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let loadersByExtension = require("./config/loaders-by-extension");
 
 let loaders = {
@@ -33,7 +32,7 @@ let stylesheetLoaders = {
 };
 
 let output = {
-  path: __dirname + "build/public",
+  path: __dirname + "/build/public",
   publicPath: "http://localhost:2992/_assets/",
   filename: "[name].js",
   chunkFilename: "[id].js",
@@ -79,15 +78,17 @@ export default {
 
   output: output,
 
+  // Loaders
   module: {
     loaders: loadersByExtension(loaders).concat(loadersByExtension(stylesheetLoaders))
   },
 
   resolveLoader: {
     root: __dirname + "/node_modules",
-    alias: {}
+    alias: {},
   },
 
+  // Externals
   externals: [],
 
   resolve: {
