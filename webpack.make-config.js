@@ -74,7 +74,6 @@ export default function (options) {
 		aliasLoader["react-proxy$"] = "react-proxy/unavailable";
 		externals.push(
 			/^react(\/.*)?$/,
-			/^reflux(\/.*)?$/,
 			"superagent",
 			"async"
 		);
