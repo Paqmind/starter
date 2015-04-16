@@ -1,8 +1,8 @@
 var async = require("async");
 var React = require("react");
 var Router = require("react-router");
-var routes = require("../app/" + __resourceQuery.substr(1) + "Routes");
-var stores = require("../app/" + __resourceQuery.substr(1) + "Stores");
+var routes = require("../frontend/" + __resourceQuery.substr(1) + "Routes");
+var stores = require("../frontend/" + __resourceQuery.substr(1) + "Stores");
 var withTimeout = require("./withTimeout");
 var ReactUpdates = require("react/lib/ReactUpdates");
 
