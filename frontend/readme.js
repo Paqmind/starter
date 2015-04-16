@@ -9,7 +9,7 @@ var Readme = React.createClass({
 				"padding": "1em"
 			}
 		};
-		var readme = { __html: require("./../../README.md") };
+		var readme = { __html: require("./../README.md") };
 		return <div style={style.default} dangerouslySetInnerHTML={readme}></div>;
 	}
 });
