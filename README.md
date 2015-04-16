@@ -1,5 +1,7 @@
 # webpack/react-starter
 
+**Working copy to rebuild paqmind.react-starter. Do not use!**
+
 Starter template for react and webpack.
 
 ## Features
