@@ -5,7 +5,7 @@ var DefaultRoute = Router.DefaultRoute;
 var NotFoundRoute = Router.NotFoundRoute;
 
 // polyfill
-if(!Object.assign)
+if (!Object.assign)
 	Object.assign = React.__spread;
 
 // export routes

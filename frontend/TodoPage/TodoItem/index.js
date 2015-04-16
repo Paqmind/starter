@@ -7,7 +7,7 @@ var Todo = require("./../../actions").Todo;
 var TodoItem = React.createClass({
 	mixins: [State, StateFromStoreMixin],
 	statics: {
-		getState: function(stores, params) {
+		getState: function (stores, params) {
 			return {
 				id: params.item,
 				// this is just the data (or undefined when not yet available)
@@ -18,27 +18,27 @@ var TodoItem = React.createClass({
 			};
 		}
 	},
-	render: function() {
+	render: function () {
 		var id = this.state.id;
 		var item = this.state.item;
 		var info = this.state.info;
 		// item is undefined on initial load
-		if(!item) {
+		if (!item) {
 			return <div>Initial load from server...</div>
 		}
 		// We use a special error data for mark errored items
 		// see ../mainStoresDescriptions.js
-		if(item.error) {
+		if (item.error) {
 			return <div>
 				<div><b>{item.error}</b></div>
-				<button onClick={function() {
+				<button onClick={function () {
 					Todo.reload(id);
 				}}>Reload</button>
 			</div>;
 		}
 		return <div>
 			<h3>Todoitem "{item.text}"</h3>
-			<p><input type="text" value={item.text} onChange={function(event) {
+			<p><input type="text" value={item.text} onChange={function (event) {
 				Todo.update(id, {
 					text: event.target.value
 				});

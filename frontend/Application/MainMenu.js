@@ -2,7 +2,7 @@ var React = require("react");
 var Link = require("react-router").Link;
 
 var MainMenu = React.createClass({
-	render: function() {
+	render: function () {
 		return <div>
 			<h2>MainMenu:</h2>
 			<ul>

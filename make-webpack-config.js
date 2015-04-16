@@ -4,18 +4,18 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var loadersByExtension = require("./config/loadersByExtension");
 var joinEntry = require("./config/joinEntry");
 
-module.exports = function(options) {
+module.exports = function (options) {
 	var entry = {
 		main: reactEntry("main"),
 		// second: reactEntry("second")
 	};
 	var loaders = {
 		"json": "json-loader",
-    "js": { test: /\.js/, exclude: /node_modules/, loader: "babel-loader" }, // ?stage=2 ????        /\.js$/ -- not working ^_^
-		//"js": {
-		//	loader: "babel-loader", //options.hotComponents ? ["react-hot-loader", "babel-loader"] : ["babel-loader"],
-		//	include: path.join(__dirname, "app")
-		//},
+    "js": {
+      test: /\.js/, // /\.js$/ -- not working ^_^
+      exclude: /node_modules/,
+      loaders: options.hotComponents ? ["react-hot-loader", "babel-loader"] : ["babel-loader"]  // ?stage=2 ????
+    },
 		"json5": "json5-loader",
 		"txt": "raw-loader",
 		"png|jpg|jpeg|gif|svg": "url-loader?limit=10000",
@@ -63,9 +63,9 @@ module.exports = function(options) {
 		/node_modules[\\\/]items-store[\\\/]/
 	];
 	var plugins = [
-		function() {
-			if(!options.prerender) {
-				this.plugin("done", function(stats) {
+		function () {
+			if (!options.prerender) {
+				this.plugin("done", function (stats) {
 					var jsonStats = stats.toJson({
 						chunkModules: true,
 						exclude: excludeFromStats
@@ -78,7 +78,7 @@ module.exports = function(options) {
 		new webpack.PrefetchPlugin("react"),
 		new webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment")
 	];
-	if(options.prerender) {
+	if (options.prerender) {
 		aliasLoader["react-proxy$"] = "react-proxy/unavailable";
 		externals.push(
 			/^react(\/.*)?$/,
@@ -88,7 +88,7 @@ module.exports = function(options) {
 		);
 		plugins.push(new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }));
 	}
-	if(options.commonsChunk) {
+	if (options.commonsChunk) {
 		plugins.push(new webpack.optimize.CommonsChunkPlugin("commons", "commons.js" + (options.longTermCaching && !options.prerender ? "?[chunkhash]" : "")));
 	}
 
@@ -96,21 +96,21 @@ module.exports = function(options) {
 	function reactEntry(name) {
 		return (options.prerender ? "./config/prerender?" : "./config/app?") + name;
 	}
-	Object.keys(stylesheetLoaders).forEach(function(ext) {
+	Object.keys(stylesheetLoaders).forEach(function (ext) {
 		var loaders = stylesheetLoaders[ext];
-		if(Array.isArray(loaders)) loaders = loaders.join("!");
-		if(options.prerender) {
+		if (Array.isArray(loaders)) loaders = loaders.join("!");
+		if (options.prerender) {
 			stylesheetLoaders[ext] = "null-loader";
-		} else if(options.separateStylesheet) {
+		} else if (options.separateStylesheet) {
 			stylesheetLoaders[ext] = ExtractTextPlugin.extract("style-loader", loaders);
 		} else {
 			stylesheetLoaders[ext] = "style-loader!" + loaders;
 		}
 	});
-	if(options.separateStylesheet && !options.prerender) {
+	if (options.separateStylesheet && !options.prerender) {
 		plugins.push(new ExtractTextPlugin("[name].css" + (options.longTermCaching ? "?[contenthash]" : "")));
 	}
-	if(options.minimize) {
+	if (options.minimize) {
 		plugins.push(
 			new webpack.optimize.UglifyJsPlugin(),
 			new webpack.optimize.DedupePlugin(),

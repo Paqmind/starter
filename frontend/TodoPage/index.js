@@ -3,7 +3,7 @@ var ListMenu = require("./TodolistMenu");
 var RouteHandler = require("react-router").RouteHandler;
 
 var TodoPage = React.createClass({
-	render: function() {
+	render: function () {
 		return <div>
 			<h2>TodoPage</h2>
 			<ListMenu />

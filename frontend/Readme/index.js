@@ -1,7 +1,7 @@
 var React = require("react");
 
 var Readme = React.createClass({
-	render: function() {
+	render: function () {
 		var style = {
 			default: {
 				"backgroundColor": "white",

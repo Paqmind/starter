@@ -6,21 +6,21 @@ var ReactUpdates = require("react/lib/ReactUpdates");
 // a few helper methods for a REST API
 
 function batchedCallback(callback) {
-	return function(err, res) {
+	return function (err, res) {
 		ReactUpdates.batchedUpdates(callback.bind(null, err, res));
 	}
 }
 
 function writeAndReadSingleItem(path, resultHandler) {
-	resultHandler = resultHandler || function(result) { return result; };
-	return function(options, callback) {
+	resultHandler = resultHandler || function (result) { return result; };
+	return function (options, callback) {
 		request.post(path + options.id)
 			.set("Accept", "application/json")
 			.type("json")
 			.send(options.update)
-			.end(batchedCallback(function(err, res) {
-				if(err) return callback(err);
-				if(res.status !== 200)
+			.end(batchedCallback(function (err, res) {
+				if (err) return callback(err);
+				if (res.status !== 200)
 					return callback(new Error("Request failed with " + res.status + ": " + res.text));
 				callback(null, resultHandler(res.body));
 			}));
@@ -28,14 +28,14 @@ function writeAndReadSingleItem(path, resultHandler) {
 }
 
 function readSingleItem(path, resultHandler) {
-	resultHandler = resultHandler || function(result) { return result; };
-	return function(options, callback) {
+	resultHandler = resultHandler || function (result) { return result; };
+	return function (options, callback) {
 		request.get(path + options.id)
 			.set("Accept", "application/json")
 			.type("json")
-			.end(batchedCallback(function(err, res) {
-				if(err) return callback(err);
-				if(res.status !== 200)
+			.end(batchedCallback(function (err, res) {
+				if (err) return callback(err);
+				if (res.status !== 200)
 					return callback(new Error("Request failed with " + res.status + ": " + res.text));
 				callback(null, resultHandler(res.body));
 			}));
@@ -43,16 +43,16 @@ function readSingleItem(path, resultHandler) {
 }
 
 function readMultipleItems(path, resultHandler) {
-	resultHandler = resultHandler || function(result) { return result; };
-	return function(optionsArr, callback) {
-		request.get(path + optionsArr.map(function(options) {
+	resultHandler = resultHandler || function (result) { return result; };
+	return function (optionsArr, callback) {
+		request.get(path + optionsArr.map(function (options) {
 			return options.id;
 		}).join("+"))
 			.set("Accept", "application/json")
 			.type("json")
-			.end(batchedCallback(function(err, res) {
-				if(err) return callback(err);
-				if(res.status !== 200)
+			.end(batchedCallback(function (err, res) {
+				if (err) return callback(err);
+				if (res.status !== 200)
 					return callback(new Error("Request failed with " + res.status + ": " + res.text));
 				callback(null, resultHandler(res.body));
 			}));
@@ -61,8 +61,8 @@ function readMultipleItems(path, resultHandler) {
 
 // a queue that allows only one REST request at a time
 // it also defers the requests to next tick, to aggregate multiple changes
-var queue = async.queue(function(fn, callback) {
-	process.nextTick(function() {
+var queue = async.queue(function (fn, callback) {
+	process.nextTick(function () {
 		fn(callback);
 	});
 }, 1);
@@ -80,14 +80,14 @@ var stores = module.exports = {
 		// REST API at "/_/list/"
 		// the API also returns "TodoItem"s for requests
 
-		writeAndReadSingleItem: writeAndReadSingleItem("/_/list/", function(result) {
-			Object.keys(result.items).forEach(function(key) {
+		writeAndReadSingleItem: writeAndReadSingleItem("/_/list/", function (result) {
+			Object.keys(result.items).forEach(function (key) {
 				stores.TodoItem.setItemData(key.substr(1), result.items[key]);
 			});
 			return result.list;
 		}),
-		readSingleItem: readSingleItem("/_/list/", function(result) {
-			Object.keys(result.items).forEach(function(key) {
+		readSingleItem: readSingleItem("/_/list/", function (result) {
+			Object.keys(result.items).forEach(function (key) {
 				stores.TodoItem.setItemData(key.substr(1), result.items[key]);
 			});
 			return result.list;
@@ -114,14 +114,14 @@ var stores = module.exports = {
 
 var actions = require("./actions");
 
-actions.Todo.add.listen(function(list, item) {
+actions.Todo.add.listen(function (list, item) {
 	stores.TodoList.updateItem(list, { $push: [item] });
 });
 
-actions.Todo.update.listen(function(id, update) {
+actions.Todo.update.listen(function (id, update) {
 	stores.TodoItem.updateItem(id, update);
 });
 
-actions.Todo.reload.listen(function(id) {
+actions.Todo.reload.listen(function (id) {
 	stores.TodoItem.update(id);
 });
