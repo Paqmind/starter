@@ -1,4 +1,4 @@
-module.exports = function (fn, timeout, callback) {
+export default function (fn, timeout, callback) {
 	var timedOut = false;
 	var to = setTimeout(function () {
 		timedOut = true;

@@ -1,4 +1,4 @@
-module.exports = require("./make-webpack-config")({
+export default require("./make-webpack-config")({
 	devServer: true,
 	hotComponents: true,
 	devtool: "eval",
@@ -6,7 +6,7 @@ module.exports = require("./make-webpack-config")({
 });
 
 
-//module.exports.getConfig = function (type) {
+// export function getConfig(type) {
 //
 //  var isDev = type === 'development';
 //

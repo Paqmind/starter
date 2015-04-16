@@ -38,7 +38,7 @@ function mergeUpdates(a, b) {
 	return a || b;
 }
 
-module.exports = {
+export default {
 	// the Router is a local store that handles information about data fetching
 	// see ../config/app.js
 	Router: {

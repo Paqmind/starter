@@ -70,4 +70,5 @@ var TodoList = React.createClass({
 		</ul>;
 	}
 });
-module.exports = TodoList;
+
+export default TodoList;

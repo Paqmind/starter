@@ -13,4 +13,4 @@ var ListMenu = React.createClass({
 	}
 });
 
-module.exports = ListMenu;
+export default ListMenu;

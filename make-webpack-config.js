@@ -4,7 +4,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var loadersByExtension = require("./config/loadersByExtension");
 var joinEntry = require("./config/joinEntry");
 
-module.exports = function (options) {
+export default function (options) {
 	var entry = {
 		main: reactEntry("main"),
 		// second: reactEntry("second")

@@ -13,4 +13,5 @@ var Readme = React.createClass({
 		return <div style={style.default} dangerouslySetInnerHTML={readme}></div>;
 	}
 });
-module.exports = Readme;
+
+export default Readme;

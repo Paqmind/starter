@@ -47,4 +47,5 @@ var TodoItem = React.createClass({
 		</div>
 	}
 });
-module.exports = TodoItem;
+
+export default TodoItem;

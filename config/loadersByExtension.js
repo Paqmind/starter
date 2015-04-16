@@ -1,4 +1,4 @@
-module.exports = function loadersByExtension(obj) {
+export default function loadersByExtension(obj) {
 	var loaders = [];
 	var extensions = Object.keys(obj).map(function (key) {
 		return key.split("|");

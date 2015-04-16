@@ -1,3 +1,3 @@
-module.exports = require("./make-webpack-config")({
+export default require("./make-webpack-config")({
 
 });

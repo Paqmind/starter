@@ -9,7 +9,7 @@ if (!Object.assign)
 	Object.assign = React.__spread;
 
 // export routes
-module.exports = (
+export default (
 	<Route name="app" path="/" handler={require("./Application")}>
 		<Route name="some-page" path="/some-page" handler={require("react-proxy!./SomePage")} />
 		<Route name="readme" path="/readme" handler={require("react-proxy!./Readme")} />

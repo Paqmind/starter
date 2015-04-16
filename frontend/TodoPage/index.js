@@ -11,4 +11,5 @@ var TodoPage = React.createClass({
 		</div>;
 	}
 });
-module.exports = TodoPage;
+
+export default TodoPage;

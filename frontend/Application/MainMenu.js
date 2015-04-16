@@ -15,4 +15,4 @@ var MainMenu = React.createClass({
 	}
 });
 
-module.exports = MainMenu;
+export default MainMenu;

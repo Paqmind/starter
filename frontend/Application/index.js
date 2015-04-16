@@ -31,4 +31,4 @@ var Application = React.createClass({
     });
   }
 });
-module.exports = Application;
+export default Application;

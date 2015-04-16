@@ -8,4 +8,5 @@ var SomePage = React.createClass({
 		</div>;
 	}
 });
-module.exports = SomePage;
+
+export default SomePage;

@@ -18,7 +18,7 @@ function createStoresPrerender(readItems) {
 	}, {});
 }
 
-module.exports = function (path, readItems, scriptUrl, styleUrl, commonsUrl, callback) {
+export default function (path, readItems, scriptUrl, styleUrl, commonsUrl, callback) {
 	var stores = createStoresPrerender(readItems);
 
 	// run the path thought react-router
