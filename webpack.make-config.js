@@ -1,4 +1,4 @@
-let path = require("path");
+var path = require("path");
 let webpack = require("webpack");
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let loadersByExtension = require("./config/loaders-by-extension");
@@ -31,20 +31,12 @@ export default function (options) {
 		"styl": "css-loader!stylus-loader",
 		"scss|sass": "css-loader!sass-loader"
 	};
-	let additionalLoaders = [
-		// { test: /some-reg-exp$/, loader: "any-loader" }
-	];
-	let alias = {
-
-	};
 	let aliasLoader = {
 
 	};
 	let externals = [
 
 	];
-	let modulesDirectories = ["web_modules", "node_modules"];
-	let extensions = ["", ".web.js", ".js"];
 	let root = path.join(__dirname, "app");
 	let publicPath = options.devServer ?
 		"http://localhost:2992/_assets/" :
@@ -139,9 +131,7 @@ export default function (options) {
 		externals: externals,
 		resolve: {
 			root: root,
-			modulesDirectories: modulesDirectories,
-			extensions: extensions,
-			alias: alias
+			modulesDirectories: ["web_modules", "node_modules"],
 		},
 		plugins: plugins,
 		devServer: {

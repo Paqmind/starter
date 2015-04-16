@@ -1,4 +1,4 @@
-export default require("./make-webpack-config")({
+export default require("./webpack.make-config")({
   // commonsChunk: true,
   longTermCaching: true,
   separateStylesheet: true,
