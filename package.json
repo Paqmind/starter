@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-server": "webpack-dev-server --config webpack.config.dev.js --hot --progress --colors --port 2992 --inline",
     "build": "webpack --config webpack.config.prod.js --progress --profile --colors",
+    "prerender": "webpack --config webpack.config.prerender.js --progress --profile --colors",
+    "prod": "npm run build && npm run prerender",
     "start-dev": "babel-node lib/server-development",
     "start": "babel-node lib/server-production"
   },

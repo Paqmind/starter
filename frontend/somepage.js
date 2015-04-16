@@ -1,6 +1,6 @@
 let React = require("react");
 
-let SomePage = React.createClass({
+export default React.createClass({
 	render: function () {
 		return <div>
 			<h2>SomePage</h2>
@@ -8,5 +8,3 @@ let SomePage = React.createClass({
 		</div>;
 	}
 });
-
-export default SomePage;
