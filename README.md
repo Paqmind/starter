@@ -32,20 +32,10 @@ Just clone this repo and change the `origin` git remote.
 npm install
 ```
 
-## Installation via Vagrant
-
-Install [vagrant](https://vagrantup.com)
+## Hot Module Replacement development server
 
 ``` text
-vagrant up
-vagrant ssh
-cd /vagrant
-```
-
-## Development server
-
-``` text
-# start the webpack-dev-server
+# start the webpack-dev-server in HMR mode
 npm run dev-server
 # wait for the first compilation is successful
 
@@ -59,31 +49,11 @@ http://localhost:8080/
 
 The configuration is `webpack-dev-server.config.js`.
 
-It automatically recompiles and refreshes the page when files are changed.
-
-Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/webpack-dev-server.html).
-
-
-## Hot Module Replacement development server
-
-``` text
-# start the webpack-dev-server in HMR mode
-npm run hot-dev-server
-# wait for the first compilation is successful
-
-# in another terminal/console
-# start the node.js server in development mode
-npm run start-dev
-
-# open this url in your browser
-http://localhost:8080/
-```
-
-The configuration is `webpack-hot-dev-server.config.js`.
-
 It automatically recompiles when files are changed. When a hot-replacement-enabled file is changed (i. e. stylesheets or React components) the module is hot-replaced. If Hot Replacement is not possible the page is refreshed.
 
 Hot Module Replacement has a performance impact on compilation.
+
+Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/webpack-dev-server.html).
 
 
 ## Production compilation and server
@@ -137,7 +107,7 @@ Many file types are preconfigured, but not every loader is installed. If you get
 
 ### Switch devtool to SourceMaps
 
-Change `devtool` property in `webpack-dev-server.config.js` and `webpack-hot-dev-server.config.js` to `"source-map"` (better module names) or `"eval-source-map"` (faster compilation).
+Change `devtool` property in `webpack-dev-server.config.js` to `"source-map"` (better module names) or `"eval-source-map"` (faster compilation).
 
 SourceMaps have a performance impact on compilation.
 
