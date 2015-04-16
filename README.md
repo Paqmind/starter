@@ -99,7 +99,7 @@ Many file types are preconfigured, but not every loader is installed. If you get
 
 (for a multi page app)
 
-1. Add an entry point to `make-webpack-config.js` (`var entry`).
+1. Add an entry point to `make-webpack-config.js` (`let entry`).
 2. Add a new top-level react component in `app` (`xxxRoutes.js`, `xxxStoreDescriptions.js`, `xxxStores.js`).
 3. (Optional) Enable `commonsChunk` in `webpack-production.config.js` and add `<script src="COMMONS_URL"></script>` to `frontend/prerender.html`.
 4. Modify the server code to require, serve and prerender the other entry point.

@@ -1,8 +1,8 @@
-var React = require("react");
-var ListMenu = require("./todolistmenu");
-var RouteHandler = require("react-router").RouteHandler;
+let React = require("react");
+let ListMenu = require("./todolistmenu");
+let RouteHandler = require("react-router").RouteHandler;
 
-var TodoPage = React.createClass({
+let TodoPage = React.createClass({
 	render: function () {
 		return <div>
 			<h2>TodoPage</h2>

@@ -1,15 +1,15 @@
-var path = require("path");
-var webpack = require("webpack");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var loadersByExtension = require("./config/loaders-by-extension");
-var joinEntry = require("./config/joinentry");
+let path = require("path");
+let webpack = require("webpack");
+let ExtractTextPlugin = require("extract-text-webpack-plugin");
+let loadersByExtension = require("./config/loaders-by-extension");
+let joinEntry = require("./config/joinentry");
 
 export default function (options) {
-	var entry = {
+	let entry = {
 		main: reactEntry("main"),
 		// second: reactEntry("second")
 	};
-	var loaders = {
+	let loaders = {
 		"json": "json-loader",
     "js": {
       test: /\.js/, // /\.js$/ -- not working ^_^
@@ -25,31 +25,31 @@ export default function (options) {
 		"html": "html-loader",
 		"md|markdown": ["html-loader", "markdown-loader"]
 	};
-	var stylesheetLoaders = {
+	let stylesheetLoaders = {
 		"css": "css-loader",
 		"less": "css-loader!less-loader",
 		"styl": "css-loader!stylus-loader",
 		"scss|sass": "css-loader!sass-loader"
 	};
-	var additionalLoaders = [
+	let additionalLoaders = [
 		// { test: /some-reg-exp$/, loader: "any-loader" }
 	];
-	var alias = {
+	let alias = {
 
 	};
-	var aliasLoader = {
+	let aliasLoader = {
 
 	};
-	var externals = [
+	let externals = [
 
 	];
-	var modulesDirectories = ["web_modules", "node_modules"];
-	var extensions = ["", ".web.js", ".js"];
-	var root = path.join(__dirname, "app");
-	var publicPath = options.devServer ?
+	let modulesDirectories = ["web_modules", "node_modules"];
+	let extensions = ["", ".web.js", ".js"];
+	let root = path.join(__dirname, "app");
+	let publicPath = options.devServer ?
 		"http://localhost:2992/_assets/" :
 		"/_assets/";
-	var output = {
+	let output = {
 		path: path.join(__dirname, "build", options.prerender ? "prerender" : "public"),
 		publicPath: publicPath,
 		filename: "[name].js" + (options.longTermCaching && !options.prerender ? "?[chunkhash]" : ""),
@@ -58,15 +58,15 @@ export default function (options) {
 		libraryTarget: options.prerender ? "commonjs2" : undefined,
 		pathinfo: options.debug
 	};
-	var excludeFromStats = [
+	let excludeFromStats = [
 		/node_modules[\\\/]react(-router)?[\\\/]/,
 		/node_modules[\\\/]items-store[\\\/]/
 	];
-	var plugins = [
+	let plugins = [
 		function () {
 			if (!options.prerender) {
 				this.plugin("done", function (stats) {
-					var jsonStats = stats.toJson({
+					let jsonStats = stats.toJson({
 						chunkModules: true,
 						exclude: excludeFromStats
 					});
@@ -97,7 +97,7 @@ export default function (options) {
 		return (options.prerender ? "./config/prerender?" : "./config/app?") + name;
 	}
 	Object.keys(stylesheetLoaders).forEach(function (ext) {
-		var loaders = stylesheetLoaders[ext];
+		let loaders = stylesheetLoaders[ext];
 		if (Array.isArray(loaders)) loaders = loaders.join("!");
 		if (options.prerender) {
 			stylesheetLoaders[ext] = "null-loader";

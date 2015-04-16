@@ -1,10 +1,10 @@
-var async = require("async");
-var React = require("react");
-var Router = require("react-router");
-var ItemsStore = require("items-store/ItemsStore");
-var routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
-var storesDescriptions = require("../frontend/" + __resourceQuery.substr(1) + "storesdescriptions");
-var html = require("../frontend/prerender.html");
+let async = require("async");
+let React = require("react");
+let Router = require("react-router");
+let ItemsStore = require("items-store/ItemsStore");
+let routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
+let storesDescriptions = require("../frontend/" + __resourceQuery.substr(1) + "storesdescriptions");
+let html = require("../frontend/prerender.html");
 
 // create stores for prerending
 // readItems contains async methods for fetching the data from database
@@ -19,7 +19,7 @@ function createStoresPrerender(readItems) {
 }
 
 export default function (path, readItems, scriptUrl, styleUrl, commonsUrl, callback) {
-	var stores = createStoresPrerender(readItems);
+	let stores = createStoresPrerender(readItems);
 
 	// run the path thought react-router
 	Router.run(routes, path, function (Application, state) {
@@ -34,7 +34,7 @@ export default function (path, readItems, scriptUrl, styleUrl, commonsUrl, callb
 		}, function () {
 
 			// prerender the application with the stores
-			var application = React.withContext({
+			let application = React.withContext({
 				stores: stores
 			}, function () {
 				return React.renderToString(<Application />);

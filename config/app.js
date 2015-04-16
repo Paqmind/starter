@@ -1,12 +1,12 @@
-var async = require("async");
-var React = require("react");
-var Router = require("react-router");
-var routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
-var stores = require("../frontend/" + __resourceQuery.substr(1) + "stores");
-var withTimeout = require("./with-timeout");
-var ReactUpdates = require("react/lib/ReactUpdates");
+let async = require("async");
+let React = require("react");
+let Router = require("react-router");
+let routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
+let stores = require("../frontend/" + __resourceQuery.substr(1) + "stores");
+let withTimeout = require("./with-timeout");
+let ReactUpdates = require("react/lib/ReactUpdates");
 
-var initialRun = true;
+let initialRun = true;
 
 // react-router handles location
 Router.run(routes, Router.HistoryLocation, function (Application, state) {

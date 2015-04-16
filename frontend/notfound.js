@@ -1,4 +1,4 @@
-var React = require("react");
+let React = require("react");
 
 export default React.createClass({
 	render: function () {

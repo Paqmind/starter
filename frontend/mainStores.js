@@ -1,7 +1,7 @@
-var ItemsStore = require("items-store/ItemsStore");
-var async = require("async");
-var request = require("superagent");
-var ReactUpdates = require("react/lib/ReactUpdates");
+let ItemsStore = require("items-store/ItemsStore");
+let async = require("async");
+let request = require("superagent");
+let ReactUpdates = require("react/lib/ReactUpdates");
 
 // a few helper methods for a REST API
 
@@ -61,19 +61,19 @@ function readMultipleItems(path, resultHandler) {
 
 // a queue that allows only one REST request at a time
 // it also defers the requests to next tick, to aggregate multiple changes
-var queue = async.queue(function (fn, callback) {
+let queue = async.queue(function (fn, callback) {
 	process.nextTick(function () {
 		fn(callback);
 	});
 }, 1);
 
 // load embedded initial store data from prerendering if available
-var initialData = typeof __StoreData === "object" ? __StoreData : {};
+let initialData = typeof __StoreData === "object" ? __StoreData : {};
 
 // take the store descriptions as base
-var desc = require("./mainStoresDescriptions");
+let desc = require("./mainStoresDescriptions");
 
-var stores = module.exports = {
+let stores = module.exports = {
 	Router: new ItemsStore(desc.Router),
 
 	TodoList: new ItemsStore(Object.assign({
@@ -112,7 +112,7 @@ var stores = module.exports = {
 
 // bind actions to stores
 
-var actions = require("./actions");
+let actions = require("./actions");
 
 actions.Todo.add.listen(function (list, item) {
 	stores.TodoList.updateItem(list, { $push: [item] });

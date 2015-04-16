@@ -1,6 +1,6 @@
 // Helper function for merging webpack entries
 export default function joinEntry(current) {
-	var args = Array.prototype.slice.call(arguments, 1);
+	let args = Array.prototype.slice.call(arguments, 1);
 	if (typeof current === "string") {
 		current = [current];
 	}
@@ -11,7 +11,7 @@ export default function joinEntry(current) {
 			if (Array.isArray(arg)) {
 				current = current.concat(arg);
 			} else {
-				var newCurrent = {};
+				let newCurrent = {};
 				Object.keys(arg).forEach(function (key) {
 					newCurrent[key] = joinEntry(current, arg[key]);
 				});
@@ -19,13 +19,13 @@ export default function joinEntry(current) {
 			}
 		} else {
 			if (Array.isArray(arg)) {
-				var newCurrent = {};
+				let newCurrent = {};
 				Object.keys(current).forEach(function (key) {
 					newCurrent[key] = joinEntry(current[key], arg);
 				});
 				current = newCurrent;
 			} else {
-				var newCurrent = {};
+				let newCurrent = {};
 				Object.keys(current).concat(Object.keys(arg)).forEach(function (key) {
 					if (current[key] && arg[key])
 						newCurrent[key] = joinEntry(current[key], arg[key]);

@@ -2,7 +2,7 @@
 // (not totally correct, but fine for now)
 function mergeUpdates(a, b) {
 	if (typeof a === "object" && typeof b === "object") {
-		var res = {};
+		let res = {};
 		Object.keys(a).concat(Object.keys(b)).forEach(function (key) {
 			if (a[key] && b[key]) {
 				switch(key) {
@@ -19,7 +19,7 @@ function mergeUpdates(a, b) {
 						res[key] = b[key];
 						break;
 					case "$merge":
-						var o = res[key] = {};
+						let o = res[key] = {};
 						Object.keys(a[key]).forEach(function (x) {
 							o[x] = a[key][x]
 						});

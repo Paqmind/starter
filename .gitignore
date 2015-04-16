@@ -2,3 +2,4 @@
 /build
 /ignore
 .idea
+npm-debug.log

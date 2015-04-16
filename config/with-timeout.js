@@ -1,6 +1,6 @@
 export default function (fn, timeout, callback) {
-	var timedOut = false;
-	var to = setTimeout(function () {
+	let timedOut = false;
+	let to = setTimeout(function () {
 		timedOut = true;
 		callback();
 	}, timeout);

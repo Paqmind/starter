@@ -8,9 +8,9 @@ export default require("./make-webpack-config")({
 
 // export function getConfig(type) {
 //
-//  var isDev = type === 'development';
+//  let isDev = type === 'development';
 //
-//  var config = {
+//  let config = {
 //    entry: './app/scripts/main.js',
 //    output: {
 //      path: __dirname,
