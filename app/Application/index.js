@@ -1,7 +1,7 @@
 var React = require("react");
 var StateFromStoreMixin = require("items-store/StateFromStoresMixin");
 var RouteHandler = require("react-router").RouteHandler;
-var MainMenu = require("./MainMenu.jsx");
+var MainMenu = require("./MainMenu");
 
 require("./style.css");
 

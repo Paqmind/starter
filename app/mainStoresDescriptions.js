@@ -40,7 +40,7 @@ function mergeUpdates(a, b) {
 
 module.exports = {
 	// the Router is a local store that handles information about data fetching
-	// see ../config/app.jsx
+	// see ../config/app.js
 	Router: {
 		local: true,
 		readSingleItem: function(item, callback) {

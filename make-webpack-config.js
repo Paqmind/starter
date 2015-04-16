@@ -10,12 +10,12 @@ module.exports = function(options) {
 		// second: reactEntry("second")
 	};
 	var loaders = {
-		"jsx": options.hotComponents ? ["react-hot-loader", "babel-loader"] : "babel-loader",
 		"json": "json-loader",
-		"js": {
-			loader: "babel-loader",
-			include: path.join(__dirname, "app")
-		},
+    "js": { test: /\.js/, exclude: /node_modules/, loader: "babel-loader" }, // ?stage=2 ????        /\.js$/ -- not working ^_^
+		//"js": {
+		//	loader: "babel-loader", //options.hotComponents ? ["react-hot-loader", "babel-loader"] : ["babel-loader"],
+		//	include: path.join(__dirname, "app")
+		//},
 		"json5": "json5-loader",
 		"txt": "raw-loader",
 		"png|jpg|jpeg|gif|svg": "url-loader?limit=10000",
@@ -44,7 +44,7 @@ module.exports = function(options) {
 
 	];
 	var modulesDirectories = ["web_modules", "node_modules"];
-	var extensions = ["", ".web.js", ".js", ".jsx"];
+	var extensions = ["", ".web.js", ".js"];
 	var root = path.join(__dirname, "app");
 	var publicPath = options.devServer ?
 		"http://localhost:2992/_assets/" :
