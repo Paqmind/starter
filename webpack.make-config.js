@@ -2,7 +2,6 @@ var path = require("path");
 let webpack = require("webpack");
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let loadersByExtension = require("./config/loaders-by-extension");
-let joinEntry = require("./config/joinentry");
 
 export default function (options) {
 	let entry = {
