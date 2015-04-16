@@ -20,7 +20,6 @@ Starter template for react and webpack.
   * Long Term Caching through file hashes enabled
   * Generate separate css file to avoid FOUC
   * Minimized CSS and javascript
-* Also supports coffee-script files if you are more a coffee-script person.
 * You can also require markdown or text files for your content.
 
 ## Local Installation
@@ -150,14 +149,6 @@ SourceMaps have a performance impact on compilation.
 SourceMaps have a performance impact on compilation.
 
 SourceMaps contains your unminimized source code, so you need to restrict access to `build\public\debugging`.
-
-### Coffeescript
-
-Coffeescript is not installed/enabled by default to not distrub non-coffee developer, but you can install it easily:
-
-1. `npm install coffee-redux-loader --save`
-2. In `make-webpack-config.js` add `".coffee"` to the `var extensions = ...` line.
-
 
 ## License
 
