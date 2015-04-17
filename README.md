@@ -1,19 +1,18 @@
 # webpack/react-starter
 
-Aimed to be simplified version of original [webpack.react-starter](https://github.com/webpack/react-starter).
+Aims to be simplified version of original [webpack.react-starter](https://github.com/webpack/react-starter).
 
 Differences:
-* pure declarative configs, much more clear subjectively
-* React-Hot-Loader is dev default
-* Nodemon as dev server instance
+* purely declarative configs
+* config options are commented and linked to Webpack doc sections
+* ES6 syntax everywhere (including webpack configs)
 * different file/folder names and structure
+* `build/public/` are merged into `public/`
+* React Hot Loader by default (dev)
+* SourceMaps by default (dev)
+* Nodemon by default (dev)
 * LESS is kept, SASS / Stylus are removed
 * mentions of CoffeeScript are removed ;)
-* SourceMaps are enabled by default
-* a lot of minor changes across documentation etc.
-* ES6 syntax everywhere (including webpack configs)
-* all config options are commented and linked to corresp. Webpack documentation section
-* `build/public/` are merged into `public/`
 
 ---
 
