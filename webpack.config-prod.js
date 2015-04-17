@@ -1,17 +1,18 @@
 let Webpack = require("webpack");
+let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 export default {
   // Compilation target http://webpack.github.io/docs/configuration.html#target
   target: "web",
 
   // Debug mode http://webpack.github.io/docs/configuration.html#debug
-  debug: true,
+  debug: false,
 
   // Enhance debugging http://webpack.github.io/docs/configuration.html#devtool
-  devtool: "source-map",
+  devtool: undefined,
 
   // Capture timing information http://webpack.github.io/docs/configuration.html#profile
-  profile: true,
+  profile: false,
 
   // Entry files
   entry: {
@@ -21,19 +22,19 @@ export default {
   // Output files
   output: {
     path: __dirname + "/build/public",
-    publicPath: "http://localhost:2992/_assets/",
-    filename: "[name].js",
-    chunkFilename: "[id].js",
+    publicPath: "/_assets/",
+    filename: "[name].js?[chunkhash]",
+    chunkFilename: "[name].js?[chunkhash]",
     sourceMapFilename: "debugging/[file].map",
     libraryTarget: undefined,
-    pathinfo: true,
+    pathinfo: false,
   },
 
   // Loaders
   module: {
     loaders: [
       // JS
-      {test: /\.(js(\?.*)?)$/, loaders: ["react-hot-loader", "babel-loader"], exclude: /node_modules/ }, // ?stage=2 ????
+      {test: /\.(js(\?.*)?)$/, loaders: ["babel-loader"], exclude: /node_modules/ }, // ?stage=2 ????
 
       // JSON
       {test: /\.(json(\?.*)?)$/,  loaders: ["json-loader"]},
@@ -64,10 +65,10 @@ export default {
       {test: /\.(md(\?.*)?)$/, loaders: ["html-loader", "markdown-loader"]},
 
       // CSS
-      {test: /\.(css(\?.*)?)$/, loaders: ["style-loader", "css-loader"]},
+      {test: /\.(css(\?.*)?)$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
 
       // LESS
-      {test: /\.(less(\?.*)?)$/, loaders: ["style-loader", "css-loader", "less-loader"]},
+      {test: /\.(less(\?.*)?)$/, loader: ExtractTextPlugin.extract("style-loader", ["css-loader", "less-loader"])},
     ],
   },
 
@@ -94,12 +95,22 @@ export default {
             /node_modules[\\\/]items-store[\\\/]/
           ]
         });
-        jsonStats.publicPath = "http://localhost:2992/_assets/";
+        jsonStats.publicPath = "/_assets/";
         require("fs").writeFileSync(__dirname + "/build/stats.json", JSON.stringify(jsonStats));
       });
     },
     new Webpack.PrefetchPlugin("react"),
     new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
+    //new Webpack.optimize.CommonsChunkPlugin("commons", "commons.js?[chunkhash]"),
+    new ExtractTextPlugin("[name].css?[contenthash]"),
+    new Webpack.optimize.UglifyJsPlugin(),
+    new Webpack.optimize.DedupePlugin(),
+    new Webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new Webpack.NoErrorsPlugin(),
   ],
 
   devServer: {
