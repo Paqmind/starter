@@ -1,5 +1,12 @@
-/node_modules
-/build
-/ignore
+# EXACT --------------------------------------------------------------------------------------------
+/ignore/
+/logs/
+/public/
+/shared/config/development.js
+
+# BY MASK ------------------------------------------------------------------------------------------
+*.iml
 .idea
+.DS_Store
+node_modules
 npm-debug.log

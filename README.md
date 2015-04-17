@@ -47,7 +47,7 @@ Just clone this repo and change the `origin` git remote.
 $ npm install && bin/install
 ```
 
-## Development server
+## Development
 
 1) Optionally change `webpack.config-dev.js`
 
@@ -73,7 +73,7 @@ Hot Module Replacement has a performance impact on compilation.
 Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/webpack-dev-server.html).
 
 
-## Production compilation and server
+## Production
 
 1) Optionally change `webpack.config-prod.js`
 
@@ -84,7 +84,7 @@ $ npm run prod
 
 3) Start the NodeJS server in production mode
 ```
-$ npm start
+$ NODE_ENV=production npm start
 ```
 
 4) Open this url in your browser
@@ -94,7 +94,7 @@ http://localhost:80/
 
 The server is at `backend/server.js`
 
-The production setting builds two configurations: one for the client (`build/public`) and one for the serverside prerendering (`build/prerender`).
+The production setting builds two configurations: one for the client (`public/main.js`) and one for the serverside prerendering (`public/prerender.main.js`).
 
 
 ## Build visualization

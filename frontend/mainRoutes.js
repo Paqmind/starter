@@ -5,8 +5,7 @@ let DefaultRoute = Router.DefaultRoute;
 let NotFoundRoute = Router.NotFoundRoute;
 
 // polyfill
-if (!Object.assign)
-	Object.assign = React.__spread;
+require("shared/shims");
 
 // export routes
 export default (
