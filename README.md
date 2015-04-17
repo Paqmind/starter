@@ -49,15 +49,15 @@ $ npm install && bin/install
 
 ## Development server
 
-#### 0. Optionally change webpack.config-dev.js
+1. Optionally change webpack.config-dev.js
 
-#### 1. Start the webpack-dev-server in HMR mode and wait for compilation
+2. Start the webpack-dev-server in HMR mode and wait for compilation
 `$ npm run dev`
 
-#### 2. Start the Nodemon server in another terminal
+3. Start the Nodemon server in another terminal
 `$ npm run nodemon`
 
-#### 3. Open this url in your browser
+4. Open this url in your browser
 `http://localhost:8080/`
 
 It automatically recompiles when files are changed. When a hot-replacement-enabled file is changed (i. e. stylesheets or React components) the module is hot-replaced. If Hot Replacement is not possible the page is refreshed.
@@ -69,15 +69,15 @@ Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/
 
 ## Production compilation and server
 
-#### 0. Optionally change webpack.config-dev.js webpack.config-prod.js
+1. Optionally change webpack.config-dev.js webpack.config-prod.js
 
-#### 1. Build the client bundle and the prerendering bundle
+2. Build the client bundle and the prerendering bundle
 `$ npm run prod`
 
-#### 2. Start the NodeJS server in production mode
+3. Start the NodeJS server in production mode
 `$ npm start`
 
-#### 3. Open this url in your browser
+4. Open this url in your browser
 `http://localhost:80/`
 
 The server is at `backend/server.js`
