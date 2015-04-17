@@ -140,7 +140,6 @@ app.get("/*", function (req, res) {
 
 
 let port = parseInt(process.env.PORT || Config.get("http-port"));
-console.log(">>>", port);
 app.listen(port, function () {
   console.log("Server listening on port " + port);
 });
