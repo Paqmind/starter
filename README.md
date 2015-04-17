@@ -16,7 +16,7 @@ Differences:
 
 ---
 
-Starter template for React and Webpack.
+# Starter template for React with Webpack
 
 ## Features
 
