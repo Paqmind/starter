@@ -1,21 +1,34 @@
 # webpack/react-starter
 
-**Working copy to rebuild paqmind.react-starter. Do not use!**
+Aimed to be simplified version of original [webpack.react-starter](https://github.com/webpack/react-starter).
 
-Starter template for react and webpack.
+Differences:
+* pure declarative configs, much more clear subjectively
+* react-hot-loader is dev default
+* Nodemon as dev server instance
+* different file/folder names and structure
+* LESS is kept, SASS / Stylus are removed, though can be easily added
+* mentions of CoffeeScript are removed ;)
+* SourceMaps are enabled by default
+* a lot of minor changes across documentation etc.
+* ES6 syntax everywhere (including webpack configs)
+* all config options are commented and linked to corresp. Webpack documentation section
+
+---
+
+Starter template for React and Webpack.
 
 ## Features
 
-* Compilation with webpack
-* React and jsx
-* react-router
-* Stylesheets can be CSS, LESS, SASS, Stylus or mixed
+* Compilation with Webpack
+* React and JSX
+* React-Router
+* Stylesheets can be CSS, LESS or mixed
 * Embedded resources like images or fonts use DataUrls if appropriate
 * A simple flag loads a react component (and dependencies) on demand.
 * Development
-  * Development server
-  * Optionally Hot Module Replacement development server (LiveReload for Stylesheets and React components enabled)
-  * Uses SourceUrl for performance, but you may switch to SourceMaps easily
+  * Hot Module Replacement development server (LiveReload for Stylesheets and React components enabled)
+  * SourceMaps
 * Production
   * Server example for prerendering for React components
   * Initial data inlined in page
@@ -30,26 +43,24 @@ Install [node.js](https://nodejs.org) or [io.js](https://iojs.org)
 
 Just clone this repo and change the `origin` git remote.
 
-``` text
-npm install
+```text
+$ npm install && bin/install
 ```
 
-## Hot Module Replacement development server
+## Development server
 
-``` text
-# start the webpack-dev-server in HMR mode
-npm run dev-server
-# wait for the first compilation is successful
+```text
+# 0. Optionally change webpack.config-dev.js
 
-# in another terminal/console
-# start the node.js server in development mode
-npm run start-dev
+# 1. Start the webpack-dev-server in HMR mode and wait for compilation
+$ npm run dev
 
-# open this url in your browser
+# 2. Start the Nodemon server in another terminal
+$ npm run nodemon
+
+# 3. Open this url in your browser
 http://localhost:8080/
 ```
-
-The configuration is `webpack.dev.config.js`.
 
 It automatically recompiles when files are changed. When a hot-replacement-enabled file is changed (i. e. stylesheets or React components) the module is hot-replaced. If Hot Replacement is not possible the page is refreshed.
 
@@ -61,19 +72,19 @@ Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/
 ## Production compilation and server
 
 ``` text
-# build the client bundle and the prerendering bundle
-npm run build
+# 0. Optionally change webpack.config-dev.js webpack.config-prod.js
 
-# start the node.js server in production mode
-npm run start
+# 1. Build the client bundle and the prerendering bundle
+$ npm run prod
 
-# open this url in your browser
+# 2. Start the NodeJS server in production mode
+$ npm start
+
+# 3. Open this url in your browser
 http://localhost:80/
 ```
 
-The configuration is `webpack-production.config.js`.
-
-The server is at `lib/server.js`
+The server is at `backend/server.js`
 
 The production setting builds two configurations: one for the client (`build/public`) and one for the serverside prerendering (`build/prerender`).
 
@@ -106,24 +117,3 @@ Many file types are preconfigured, but not every loader is installed. If you get
 3. (Optional) Enable `commonsChunk` in `webpack-production.config.js` and add `<script src="COMMONS_URL"></script>` to `frontend/prerender.html`.
 4. Modify the server code to require, serve and prerender the other entry point.
 5. Restart compilation.
-
-### Switch devtool to SourceMaps
-
-Change `devtool` property in `webpack.dev.config.js` to `"source-map"` (better module names) or `"eval-source-map"` (faster compilation).
-
-SourceMaps have a performance impact on compilation.
-
-### Enable SourceMaps in production
-
-1. Uncomment the `devtool` line in `webpack-production.config.js`.
-2. Make sure that the folder `build\public\debugging` is access controlled, i. e. by password.
-
-SourceMaps have a performance impact on compilation.
-
-SourceMaps contains your unminimized source code, so you need to restrict access to `build\public\debugging`.
-
-## License
-
-Copyright (c) 2012-2015 Tobias Koppers [![Gittip donate button](http://img.shields.io/gittip/sokra.png)](https://www.gittip.com/sokra/)
-
-MIT (http://www.opensource.org/licenses/mit-license.php)

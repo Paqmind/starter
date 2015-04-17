@@ -9,6 +9,6 @@
   ],
   "verbose": true,
   "watch": [
-    "lib/"
+    "backend/"
   ]
 }

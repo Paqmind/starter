@@ -5,12 +5,12 @@
   "main": "frontend/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-server": "webpack-dev-server --config webpack.config-dev.js --hot --progress --colors --port 2992 --inline",
+    "dev": "webpack-dev-server --config webpack.config-dev.js --hot --progress --colors --port 2992 --inline",
     "build": "webpack --config webpack.config-prod.js --progress --profile --colors",
     "prerender": "webpack --config webpack.config-prerender.js --progress --profile --colors",
     "prod": "npm run build && npm run prerender",
-    "nodemon": "nodemon lib/server-development",
-    "start": "babel-node lib/server-production"
+    "nodemon": "nodemon backend/server-development",
+    "start": "babel-node backend/server-production"
   },
   "dependencies": {
     "async": "^0.9.0",
