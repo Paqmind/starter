@@ -9,6 +9,7 @@
   ],
   "verbose": true,
   "watch": [
-    "backend/"
+    "backend/",
+    "shared/"
   ]
 }

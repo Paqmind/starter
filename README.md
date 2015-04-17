@@ -92,7 +92,7 @@ $ NODE_ENV=production npm start
 http://localhost:80/
 ```
 
-The server is at `backend/server.js`
+The server is at `backend/scripts/server.js`
 
 The production setting builds two configurations: one for the client (`public/main.js`) and one for the serverside prerendering (`public/prerender.main.js`).
 

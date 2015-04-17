@@ -12,11 +12,11 @@ let DB = require("./db");
 
 // require the page rendering logic
 let renderApplication = Config.get("app-prerender") ?
-  require("../public/prerender.main.js") :
-  require("../config/simple.js");
+  require("../../public/prerender.main.js") :
+  require("../../config/simple.js");
 
 // load bundle information from stats
-let stats = require("../public/stats.json");
+let stats = require("../../public/stats.json");
 
 let publicPath = stats.publicPath;
 
