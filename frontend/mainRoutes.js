@@ -4,9 +4,6 @@ let Route = Router.Route;
 let DefaultRoute = Router.DefaultRoute;
 let NotFoundRoute = Router.NotFoundRoute;
 
-// polyfill
-require("shared/shims");
-
 // export routes
 export default (
 	<Route name="app" path="/" handler={require("./application")}>

@@ -16,7 +16,7 @@ export default {
 
   // Entry files
   entry: {
-    main: "./config/app?main",
+    main: "./frontend/app?main",
   },
 
   // Output files

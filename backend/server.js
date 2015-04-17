@@ -8,15 +8,15 @@ let Express = require("express");
 let Path = require("path");
 let bodyParser = require("body-parser");
 let uuid = require("uuid");
-let DB = require("./db");
+let DB = require("backend/db");
 
 // require the page rendering logic
 let renderApplication = Config.get("app-prerender") ?
-  require("../../public/prerender.main.js") :
-  require("../../config/simple.js");
+  require("public/prerender.main.js") :
+  require("frontend/simple.js");
 
 // load bundle information from stats
-let stats = require("../../public/stats.json");
+let stats = require("public/stats.json");
 
 let publicPath = stats.publicPath;
 
@@ -140,6 +140,7 @@ app.get("/*", function (req, res) {
 
 
 let port = parseInt(process.env.PORT || Config.get("http-port"));
+console.log(">>>", port);
 app.listen(port, function () {
   console.log("Server listening on port " + port);
 });

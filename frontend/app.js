@@ -3,9 +3,11 @@ let Async = require("async");
 let React = require("react");
 let ReactUpdates = require("react/lib/ReactUpdates");
 let ReactRouter = require("react-router");
-let routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
-let stores = require("../frontend/" + __resourceQuery.substr(1) + "stores");
+let routes = require("frontend/" + __resourceQuery.substr(1) + "routes");
+let stores = require("frontend/" + __resourceQuery.substr(1) + "stores");
 let withTimeout = require("./with-timeout");
+// polyfill
+require("shared/shims");
 
 // ??? =============================================================================================
 let initialRun = true;

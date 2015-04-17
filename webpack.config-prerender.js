@@ -16,7 +16,7 @@ export default {
 
   // Entry files
   entry: {
-    main: "./config/prerender?main",
+    main: "./frontend/prerender?main",
   },
 
   // Output files

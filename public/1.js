@@ -1,1 +1,0 @@
-webpackJsonp([1],{63:function(t,e,n){"use strict";var r=n(2);t.exports=r.createClass({displayName:"somepage",render:function(){return r.createElement("div",null,r.createElement("h2",null,"SomePage"),r.createElement("p",null,"This is just some page... (loaded on demand)"))}})}});

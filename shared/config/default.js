@@ -8,7 +8,7 @@ let staticDir = Path.join(projectDir, "static");
 // CONFIG ==========================================================================================
 export default {
   // HTTP
-  "http-port": 80,
+  "http-port": 8080,
   "http-use-etag": true,
 
   // DIRS

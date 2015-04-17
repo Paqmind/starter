@@ -71,7 +71,7 @@ let queue = Async.queue(function (fn, callback) {
 let initialData = typeof __StoreData === "object" ? __StoreData : {};
 
 // take the store descriptions as base
-let desc = require("./mainStoresDescriptions");
+let desc = require("./mainstoresdescriptions");
 
 let stores = module.exports = {
 	Router: new ItemsStore(desc.Router),
