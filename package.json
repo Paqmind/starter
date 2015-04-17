@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.config-prod.js --progress --profile --colors",
     "prerender": "webpack --config webpack.config-prerender.js --progress --profile --colors",
     "prod": "npm run build && npm run prerender",
-    "start-dev": "babel-node lib/server-development",
+    "nodemon": "nodemon lib/server-development",
     "start": "babel-node lib/server-production"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "less": "^2.1.2",
     "less-loader": "^2.0.0",
     "markdown-loader": "^0.1.2",
+    "nodemon": "^1.3.7",
     "null-loader": "^0.1.0",
     "react": "^0.12.1",
     "react-hot-loader": "^1.0.0",
@@ -37,7 +38,7 @@
     "superagent": "^0.21.0",
     "url-loader": "^0.5.5",
     "uuid": "^2.0.1",
-    "webpack": "^1.7.3",
+    "webpack": "^1.8.5",
     "webpack-dev-server": "^1.8.0"
   }
 }
