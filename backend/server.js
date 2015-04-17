@@ -1,8 +1,7 @@
 export default function (options) {
-
-	let express = require("express");
+	let Express = require("express");
+  let Path = require("path");
 	let bodyParser = require("body-parser");
-	let path = require("path");
 	let uuid = require("uuid");
 	let DB = require("./db");
 
@@ -20,13 +19,13 @@ export default function (options) {
 	let SCRIPT_URL = publicPath + [].concat(stats.assetsByChunkName.main)[0];
 	let COMMONS_URL = publicPath + [].concat(stats.assetsByChunkName.commons)[0];
 
-	let app = express();
+	let app = Express();
 
 	// serve the static assets
-	app.use("/_assets", express.static(path.join(__dirname, "..", "build", "public"), {
+	app.use("/_assets", Express.static(Path.join(__dirname, "..", "build", "public"), {
 		maxAge: "200d" // We can cache them as they include hashes
 	}));
-	app.use("/", express.static(path.join(__dirname, "..", "public"), {
+	app.use("/", Express.static(Path.join(__dirname, "..", "public"), {
 	}));
 
 	// artifical delay and errors
@@ -137,7 +136,7 @@ export default function (options) {
 	});
 
 
-	let port = +(process.env.PORT || options.defaultPort || 8080);
+	let port = parseInt(process.env.PORT || options.defaultPort) || 8080;
 	app.listen(port, function () {
 		console.log("Server listening on port " + port);
 	});

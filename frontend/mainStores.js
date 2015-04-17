@@ -1,6 +1,6 @@
 let ItemsStore = require("items-store/ItemsStore");
-let async = require("async");
-let request = require("superagent");
+let Async = require("async");
+let Superagent = require("superagent");
 let ReactUpdates = require("react/lib/ReactUpdates");
 
 // a few helper methods for a REST API
@@ -14,7 +14,7 @@ function batchedCallback(callback) {
 function writeAndReadSingleItem(path, resultHandler) {
 	resultHandler = resultHandler || function (result) { return result; };
 	return function (options, callback) {
-		request.post(path + options.id)
+		Superagent.post(path + options.id)
 			.set("Accept", "application/json")
 			.type("json")
 			.send(options.update)
@@ -30,7 +30,7 @@ function writeAndReadSingleItem(path, resultHandler) {
 function readSingleItem(path, resultHandler) {
 	resultHandler = resultHandler || function (result) { return result; };
 	return function (options, callback) {
-		request.get(path + options.id)
+		Superagent.get(path + options.id)
 			.set("Accept", "application/json")
 			.type("json")
 			.end(batchedCallback(function (err, res) {
@@ -45,7 +45,7 @@ function readSingleItem(path, resultHandler) {
 function readMultipleItems(path, resultHandler) {
 	resultHandler = resultHandler || function (result) { return result; };
 	return function (optionsArr, callback) {
-		request.get(path + optionsArr.map(function (options) {
+		Superagent.get(path + optionsArr.map(function (options) {
 			return options.id;
 		}).join("+"))
 			.set("Accept", "application/json")
@@ -61,7 +61,7 @@ function readMultipleItems(path, resultHandler) {
 
 // a queue that allows only one REST request at a time
 // it also defers the requests to next tick, to aggregate multiple changes
-let queue = async.queue(function (fn, callback) {
+let queue = Async.queue(function (fn, callback) {
 	process.nextTick(function () {
 		fn(callback);
 	});

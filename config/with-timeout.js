@@ -1,3 +1,4 @@
+// ??? =============================================================================================
 export default function (fn, timeout, callback) {
 	let timedOut = false;
 	let to = setTimeout(function () {

@@ -1,11 +1,13 @@
-let async = require("async");
+// IMPORTS =========================================================================================
+let Async = require("async");
 let React = require("react");
-let Router = require("react-router");
+let ReactRouter = require("react-router");
 let ItemsStore = require("items-store/ItemsStore");
 let routes = require("../frontend/" + __resourceQuery.substr(1) + "routes");
 let storesDescriptions = require("../frontend/" + __resourceQuery.substr(1) + "storesdescriptions");
 let html = require("../frontend/prerender.html");
 
+// ??? =============================================================================================
 // create stores for prerending
 // readItems contains async methods for fetching the data from database
 function createStoresPrerender(readItems) {
@@ -22,10 +24,10 @@ export default function (path, readItems, scriptUrl, styleUrl, commonsUrl, callb
 	let stores = createStoresPrerender(readItems);
 
 	// run the path thought react-router
-	Router.run(routes, path, function (Application, state) {
+	RouterRouter.run(routes, path, function (Application, state) {
 		// wait until every store is charged by the components
 		// for faster response time there could be a timeout here
-		async.forEach(state.routes, function (route, callback) {
+		Async.forEach(state.routes, function (route, callback) {
 			if (route.handler.chargeStores) {
 				route.handler.chargeStores(stores, state.params, callback);
 			} else {
