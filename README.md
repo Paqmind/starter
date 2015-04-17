@@ -49,19 +49,19 @@ $ npm install && bin/install
 
 ## Development server
 
-1. Optionally change webpack.config-dev.js
+1) Optionally change webpack.config-dev.js
 
-2. Start the webpack-dev-server in HMR mode and wait for compilation
+2) Start the webpack-dev-server in HMR mode and wait for compilation
 ```
 $ npm run dev
 ```
 
-3. Start the Nodemon server in another terminal
+3) Start the Nodemon server in another terminal
 ```
 $ npm run nodemon
 ```
 
-4. Open this url in your browser
+4) Open this url in your browser
 ```
 http://localhost:8080/
 ```
@@ -75,19 +75,19 @@ Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/
 
 ## Production compilation and server
 
-1. Optionally change webpack.config-dev.js webpack.config-prod.js
+1) Optionally change webpack.config-dev.js webpack.config-prod.js
 
-2. Build the client bundle and the prerendering bundle
+2) Build the client bundle and the prerendering bundle
 ```
 $ npm run prod
 ```
 
-3. Start the NodeJS server in production mode
+3) Start the NodeJS server in production mode
 ```
 $ npm start
 ```
 
-4. Open this url in your browser
+4) Open this url in your browser
 ```
 http://localhost:80/
 ```
