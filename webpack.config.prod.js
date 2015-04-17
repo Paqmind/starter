@@ -9,28 +9,23 @@ let loaders = {
     exclude: /node_modules/,
     loaders: ["babel-loader"] // ?stage=2 ????
   },
-  "json5": "json5-loader",
-  "txt": "raw-loader",
-  "png": "url-loader?limit=10000",
-  "jpg": "url-loader?limit=10000",
-  "jpeg": "url-loader?limit=10000",
-  "gif": "url-loader?limit=10000",
-  "svg": "url-loader?limit=10000",
-  "woff": "url-loader?limit=100000",
-  "woff2": "url-loader?limit=100000",
-  "ttf": "file-loader",
-  "eot": "file-loader",
-  "wav": "file-loader",
-  "mp3": "file-loader",
-  "html": "html-loader",
-  "md": ["html-loader", "markdown-loader"]
-};
-
-let stylesheetLoaders = {
-  "css": "css-loader",
-  "less": "css-loader!less-loader",
-  "styl": "css-loader!stylus-loader",
-  "scss|sass": "css-loader!sass-loader"
+  "json5": ["json5-loader"],
+  "txt": ["raw-loader"],
+  "png": ["url-loader?limit=10000"],
+  "jpg": ["url-loader?limit=10000"],
+  "jpeg": ["url-loader?limit=10000"],
+  "gif": ["url-loader?limit=10000"],
+  "svg": ["url-loader?limit=10000"],
+  "woff": ["url-loader?limit=100000"],
+  "woff2": ["url-loader?limit=100000"],
+  "ttf": ["file-loader"],
+  "eot": ["file-loader"],
+  "wav": ["file-loader"],
+  "mp3": ["file-loader"],
+  "html": ["html-loader"],
+  "md": ["html-loader", "markdown-loader"],
+  "css": ExtractTextPlugin.extract("style-loader", "css-loader"),
+  "less": ExtractTextPlugin.extract("style-loader", ["css-loader", "less-loader"]),
 };
 
 let output = {
@@ -43,17 +38,15 @@ let output = {
   pathinfo: false,
 };
 
-let excludeFromStats = [
-  /node_modules[\\\/]react(-router)?[\\\/]/,
-  /node_modules[\\\/]items-store[\\\/]/
-];
-
 let plugins = [
   function () {
     this.plugin("done", function (stats) {
       let jsonStats = stats.toJson({
         chunkModules: true,
-        exclude: excludeFromStats
+        exclude: [
+          /node_modules[\\\/]react(-router)?[\\\/]/,
+          /node_modules[\\\/]items-store[\\\/]/
+        ]
       });
       jsonStats.publicPath = "/_assets/";
       require("fs").writeFileSync(__dirname + "/build/stats.json", JSON.stringify(jsonStats));
@@ -64,11 +57,6 @@ let plugins = [
 ];
 
 plugins.push(new Webpack.optimize.CommonsChunkPlugin("commons", "commons.js?[chunkhash]"));
-
-Object.keys(stylesheetLoaders).forEach(function (ext) {
-  let loaders = stylesheetLoaders[ext];
-  stylesheetLoaders[ext] = ExtractTextPlugin.extract("style-loader", loaders);
-});
 
 plugins.push(new ExtractTextPlugin("[name].css?[contenthash]"));
 plugins.push(
@@ -97,7 +85,7 @@ export default {
 
   // Loaders
   module: {
-    loaders: loadersByExtension(loaders).concat(loadersByExtension(stylesheetLoaders))
+    loaders: loadersByExtension(loaders),
   },
 
   resolveLoader: {
@@ -118,7 +106,10 @@ export default {
   devServer: {
     stats: {
       cached: false,
-      exclude: excludeFromStats
+      exclude: [
+        /node_modules[\\\/]react(-router)?[\\\/]/,
+        /node_modules[\\\/]items-store[\\\/]/
+      ]
     }
   }
 };

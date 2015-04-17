@@ -8,27 +8,23 @@ let loaders = {
     exclude: /node_modules/,
     loaders: ["react-hot-loader", "babel-loader"] // ?stage=2 ????
   },
-  "json5": "json5-loader",
-  "txt": "raw-loader",
-  "png": "url-loader?limit=10000",
-  "jpg": "url-loader?limit=10000",
-  "jpeg": "url-loader?limit=10000",
-  "gif": "url-loader?limit=10000",
-  "svg": "url-loader?limit=10000",
-  "woff": "url-loader?limit=100000",
-  "woff2": "url-loader?limit=100000",
-  "ttf": "file-loader",
-  "eot": "file-loader",
-  "wav": "file-loader",
-  "mp3": "file-loader",
-  "html": "html-loader",
-  "md": ["html-loader", "markdown-loader"]
-};
-let stylesheetLoaders = {
-  "css": "css-loader",
-  "less": "css-loader!less-loader",
-  "styl": "css-loader!stylus-loader",
-  "scss|sass": "css-loader!sass-loader"
+  "json5": ["json5-loader"],
+  "txt": ["raw-loader"],
+  "png": ["url-loader?limit=10000"],
+  "jpg": ["url-loader?limit=10000"],
+  "jpeg": ["url-loader?limit=10000"],
+  "gif": ["url-loader?limit=10000"],
+  "svg": ["url-loader?limit=10000"],
+  "woff": ["url-loader?limit=100000"],
+  "woff2": ["url-loader?limit=100000"],
+  "ttf": ["file-loader"],
+  "eot": ["file-loader"],
+  "wav": ["file-loader"],
+  "mp3": ["file-loader"],
+  "html": ["html-loader"],
+  "md": ["html-loader", "markdown-loader"],
+  "css": ["style-loader", "css-loader"],
+  "less": ["style-loader", "css-loader", "less-loader"],
 };
 
 let output = {
@@ -40,16 +36,16 @@ let output = {
   libraryTarget: undefined,
   pathinfo: true,
 };
-let excludeFromStats = [
-  /node_modules[\\\/]react(-router)?[\\\/]/,
-  /node_modules[\\\/]items-store[\\\/]/
-];
+
 let plugins = [
   function () {
     this.plugin("done", function (stats) {
       let jsonStats = stats.toJson({
         chunkModules: true,
-        exclude: excludeFromStats
+        exclude: [
+          /node_modules[\\\/]react(-router)?[\\\/]/,
+          /node_modules[\\\/]items-store[\\\/]/
+        ]
       });
       jsonStats.publicPath = "http://localhost:2992/_assets/";
       require("fs").writeFileSync(__dirname + "/build/stats.json", JSON.stringify(jsonStats));
@@ -59,17 +55,12 @@ let plugins = [
   new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment")
 ];
 
-Object.keys(stylesheetLoaders).forEach(function (ext) {
-  let loaders = stylesheetLoaders[ext];
-  stylesheetLoaders[ext] = "style-loader!" + loaders;
-});
-
 export default {
   target: "web",
 
   debug: true,
 
-  devtool: "eval",
+  devtool: "source-map",
 
   entry: {
     main: "./config/app?main",
@@ -79,7 +70,7 @@ export default {
 
   // Loaders
   module: {
-    loaders: loadersByExtension(loaders).concat(loadersByExtension(stylesheetLoaders))
+    loaders: loadersByExtension(loaders),
   },
 
   resolveLoader: {
@@ -100,7 +91,10 @@ export default {
   devServer: {
     stats: {
       cached: false,
-      exclude: excludeFromStats
+      exclude: [
+        /node_modules[\\\/]react(-router)?[\\\/]/,
+        /node_modules[\\\/]items-store[\\\/]/
+      ]
     }
   }
 };
