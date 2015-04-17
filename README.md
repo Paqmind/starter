@@ -49,7 +49,7 @@ $ npm install && bin/install
 
 ## Development server
 
-1) Optionally change webpack.config-dev.js
+1) Optionally change `webpack.config-dev.js`
 
 2) Start the webpack-dev-server in HMR mode and wait for compilation
 ```
@@ -75,7 +75,7 @@ Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/
 
 ## Production compilation and server
 
-1) Optionally change webpack.config-dev.js webpack.config-prod.js
+1) Optionally change `webpack.config-prod.js`
 
 2) Build the client bundle and the prerendering bundle
 ```
