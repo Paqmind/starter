@@ -24,7 +24,7 @@ export default function (path, readItems, scriptUrl, styleUrl, commonsUrl, callb
 	let stores = createStoresPrerender(readItems);
 
 	// run the path thought react-router
-	RouterRouter.run(routes, path, function (Application, state) {
+	ReactRouter.run(routes, path, function (Application, state) {
 		// wait until every store is charged by the components
 		// for faster response time there could be a timeout here
 		Async.forEach(state.routes, function (route, callback) {

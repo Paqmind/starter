@@ -21,8 +21,8 @@ export default {
 
   // Output files
   output: {
-    path: __dirname + "/build/public",
-    publicPath: "/_assets/",
+    path: __dirname + "/public",
+    publicPath: "/public/",
     filename: "[name].js?[chunkhash]",
     chunkFilename: "[name].js?[chunkhash]",
     sourceMapFilename: "debugging/[file].map",
@@ -95,8 +95,8 @@ export default {
             /node_modules[\\\/]items-store[\\\/]/
           ]
         });
-        jsonStats.publicPath = "/_assets/";
-        require("fs").writeFileSync(__dirname + "/build/stats.json", JSON.stringify(jsonStats));
+        jsonStats.publicPath = "/public/";
+        require("fs").writeFileSync(__dirname + "/public/stats.json", JSON.stringify(jsonStats));
       });
     },
     new Webpack.PrefetchPlugin("react"),

@@ -21,10 +21,10 @@ export default {
 
   // Output files
   output: {
-    path: __dirname + "/build/prerender",
-    publicPath: "/_assets/",
-    filename: "[name].js",
-    chunkFilename: "[name].js",
+    path: __dirname + "/public",
+    publicPath: "/public/",
+    filename: "prerender.[name].js",
+    chunkFilename: "prerender.[name].js",
     sourceMapFilename: "debugging/[file].map",
     libraryTarget: "commonjs2",
     pathinfo: false,

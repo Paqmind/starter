@@ -4,15 +4,16 @@ Aimed to be simplified version of original [webpack.react-starter](https://githu
 
 Differences:
 * pure declarative configs, much more clear subjectively
-* react-hot-loader is dev default
+* React-Hot-Loader is dev default
 * Nodemon as dev server instance
 * different file/folder names and structure
-* LESS is kept, SASS / Stylus are removed, though can be easily added
+* LESS is kept, SASS / Stylus are removed
 * mentions of CoffeeScript are removed ;)
 * SourceMaps are enabled by default
 * a lot of minor changes across documentation etc.
 * ES6 syntax everywhere (including webpack configs)
 * all config options are commented and linked to corresp. Webpack documentation section
+* `build/public/` are merged into `public/`
 
 ---
 
@@ -97,16 +98,11 @@ The server is at `backend/server.js`
 The production setting builds two configurations: one for the client (`build/public`) and one for the serverside prerendering (`build/prerender`).
 
 
-## Legacy static assets
-
-Assets in `public` are also served.
-
-
 ## Build visualization
 
 After a production build you may want to visualize your modules and chunks tree.
 
-Use the [analyse tool](http://webpack.github.io/analyse/) with the file at `build/stats.json`.
+Use the [analyse tool](http://webpack.github.io/analyse/) with the file at `public/stats.json`.
 
 
 ## Loaders and file types

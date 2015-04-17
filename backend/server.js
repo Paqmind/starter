@@ -7,11 +7,11 @@ export default function (options) {
 
 	// require the page rendering logic
 	let renderApplication = options.prerender ?
-		require("../build/prerender/main.js") :
+		require("../public/prerender.main.js") :
 		require("../config/simple.js");
 
 	// load bundle information from stats
-	let stats = require("../build/stats.json");
+	let stats = require("../public/stats.json");
 
 	let publicPath = stats.publicPath;
 
@@ -22,10 +22,8 @@ export default function (options) {
 	let app = Express();
 
 	// serve the static assets
-	app.use("/_assets", Express.static(Path.join(__dirname, "..", "build", "public"), {
+	app.use("/public", Express.static(Path.join(__dirname, "..", "public"), {
 		maxAge: "200d" // We can cache them as they include hashes
-	}));
-	app.use("/", Express.static(Path.join(__dirname, "..", "public"), {
 	}));
 
 	// artifical delay and errors
