@@ -40,7 +40,7 @@ function mergeUpdates(a, b) {
 
 export default {
 	// the Router is a local store that handles information about data fetching
-	// see ../frontend/app.js
+	// see ../frontend/app-react.js
 	Router: {
 		local: true,
 		readSingleItem: function (item, callback) {

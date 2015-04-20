@@ -4,10 +4,10 @@ let Link = require("react-router").Link;
 let StateFromStoreMixin = require("items-store/StateFromStoresMixin");
 let Todo = require("./../actions").Todo;
 
-let TodoList = React.createClass({
+export default React.createClass({
 	mixins: [State, StateFromStoreMixin],
 	statics: {
-		getState: function (stores, params) {
+		getState(stores, params) {
 			let list = stores.TodoList.getItem(params.list);
 			return {
 				id: params.list,
@@ -21,12 +21,12 @@ let TodoList = React.createClass({
 			};
 		}
 	},
-	getInitialState: function () {
+	getInitialState() {
 		return {
 			newItem: ""
 		};
 	},
-	render: function () {
+	render() {
 		let id = this.state.id;
 		let list = this.state.list;
 		let items = this.state.items;
@@ -40,7 +40,7 @@ let TodoList = React.createClass({
 			}
 		</div>;
 	},
-	renderItemsView: function (id, list, items) {
+	renderItemsView(id, list, items) {
 		return <ul>
 			{
 				list.map(function (item, idx) {
@@ -70,5 +70,3 @@ let TodoList = React.createClass({
 		</ul>;
 	}
 });
-
-export default TodoList;

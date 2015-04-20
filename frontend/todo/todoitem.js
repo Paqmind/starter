@@ -4,10 +4,10 @@ let Link = require("react-router").Link;
 let StateFromStoreMixin = require("items-store/StateFromStoresMixin");
 let Todo = require("./../actions").Todo;
 
-let TodoItem = React.createClass({
+export default React.createClass({
 	mixins: [State, StateFromStoreMixin],
 	statics: {
-		getState: function (stores, params) {
+		getState(stores, params) {
 			return {
 				id: params.item,
 				// this is just the data (or undefined when not yet available)
@@ -18,7 +18,7 @@ let TodoItem = React.createClass({
 			};
 		}
 	},
-	render: function () {
+	render() {
 		let id = this.state.id;
 		let item = this.state.item;
 		let info = this.state.info;
@@ -47,5 +47,3 @@ let TodoItem = React.createClass({
 		</div>
 	}
 });
-
-export default TodoItem;

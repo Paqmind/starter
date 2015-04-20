@@ -1,8 +1,8 @@
 let React = require("react");
 let Link = require("react-router").Link;
 
-let MainMenu = React.createClass({
-	render: function () {
+export default React.createClass({
+	render() {
 		return <div>
 			<h2>MainMenu:</h2>
 			<ul>
@@ -14,5 +14,3 @@ let MainMenu = React.createClass({
 		</div>;
 	}
 });
-
-export default MainMenu;

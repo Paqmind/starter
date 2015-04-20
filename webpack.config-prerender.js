@@ -16,7 +16,7 @@ export default {
 
   // Entry files http://webpack.github.io/docs/configuration.html#entry
   entry: {
-    main: "./frontend/prerender?main",
+    main: "./backend/app-react",
   },
 
   // Output files http://webpack.github.io/docs/configuration.html#output
@@ -85,6 +85,7 @@ export default {
   resolveLoader: {
     // Abs. path with loaders
     root: __dirname + "/node_modules",
+
     alias: {"react-proxy$": "react-proxy/unavailable"},
   },
 

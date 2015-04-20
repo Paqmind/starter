@@ -1,7 +1,7 @@
 let React = require("react");
 
-let Readme = React.createClass({
-	render: function () {
+export default React.createClass({
+	render() {
 		let style = {
 			default: {
 				"backgroundColor": "white",
@@ -9,9 +9,7 @@ let Readme = React.createClass({
 				"padding": "1em"
 			}
 		};
-		let readme = { __html: require("./../README.md") };
+		let readme = { __html: require("./../../README.md") };
 		return <div style={style.default} dangerouslySetInnerHTML={readme}></div>;
 	}
 });
-
-export default Readme;

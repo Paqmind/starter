@@ -68,7 +68,7 @@ let queue = Async.queue(function (fn, callback) {
 }, 1);
 
 // load embedded initial store data from prerendering if available
-let initialData = typeof __StoreData === "object" ? __StoreData : {};
+let dataPayload = typeof dataPayload === "object" ? dataPayload : {};
 
 // take the store descriptions as base
 let desc = require("./mainstoresdescriptions");
@@ -94,7 +94,7 @@ let stores = module.exports = {
 		}),
 
 		queueRequest: queue.push.bind(queue),
-	}, desc.TodoList), initialData.TodoList),
+	}, desc.TodoList), dataPayload.TodoList),
 
 	TodoItem: new ItemsStore(Object.assign({
 		// REST API at "/_/todo"
@@ -106,7 +106,7 @@ let stores = module.exports = {
 
 		queueRequest: queue.push.bind(queue),
 		maxWriteItems: 10
-	}, desc.TodoItem), initialData.TodoItem)
+	}, desc.TodoItem), dataPayload.TodoItem)
 };
 
 

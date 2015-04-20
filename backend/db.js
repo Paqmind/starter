@@ -1,10 +1,10 @@
+// IMPORTS =========================================================================================
 let update = require("react/lib/update");
 
+// DB ==============================================================================================
 function DB(initialData) {
 	this.data = initialData || {};
 }
-
-export default DB;
 
 DB.prototype.get = function (id, createDefaultData) {
 	let d = this.data["_" + id];
@@ -21,3 +21,5 @@ DB.prototype.update = function (id, upd) {
 DB.prototype.set = function (id, data) {
 	return this.data["_" + id] = data;
 };
+
+export default DB;

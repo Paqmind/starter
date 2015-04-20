@@ -15,7 +15,7 @@ export default {
 
   // Entry files http://webpack.github.io/docs/configuration.html#entry
   entry: {
-    main: "./frontend/app?main",
+    main: "./frontend/app-react", // TODO other pages ?!
   },
 
   // Output files http://webpack.github.io/docs/configuration.html#output
@@ -23,7 +23,7 @@ export default {
     path: __dirname + "/public",
     publicPath: "http://localhost:2992/public/",
     filename: "[name].js",
-    chunkFilename: "[id].js",
+    chunkFilename: "[id].js", // TODO need?
     sourceMapFilename: "debugging/[file].map",
     libraryTarget: undefined,
     pathinfo: true,

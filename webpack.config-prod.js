@@ -16,7 +16,7 @@ export default {
 
   // Entry files http://webpack.github.io/docs/configuration.html#entry
   entry: {
-    main: "./frontend/app?main",
+    main: "./frontend/app-react", // TODO other pages ?!
   },
 
   // Output files http://webpack.github.io/docs/configuration.html#output
@@ -24,7 +24,7 @@ export default {
     path: __dirname + "/public",
     publicPath: "/public/",
     filename: "[name].js?[chunkhash]",
-    chunkFilename: "[name].js?[chunkhash]",
+    chunkFilename: "[name].js?[chunkhash]", // TODO need?
     sourceMapFilename: "debugging/[file].map",
     libraryTarget: undefined,
     pathinfo: false,
@@ -59,7 +59,8 @@ export default {
       {test: /\.(mp3(\?.*)?)$/, loaders: ["file"]},
 
       // HTML
-      {test: /\.(html(\?.*)?)$/, loaders: ["html"]},
+      //{test: /\.(html(\?.*)?)$/, loaders: ["html"]},
+      { test: /\.html$/, loaders: ["html"] },
 
       // MARKDOWN
       {test: /\.(md(\?.*)?)$/, loaders: ["html", "markdown"]},
@@ -107,7 +108,7 @@ export default {
         require("fs").writeFileSync(__dirname + "/public/stats.json", JSON.stringify(jsonStats));
       });
     },
-    //new Webpack.PrefetchPlugin("react"),
+    new Webpack.PrefetchPlugin("react"),
     //new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
     //new Webpack.optimize.CommonsChunkPlugin("commons", "commons.js?[chunkhash]"),
     //new ExtractTextPlugin("[name].css?[contenthash]"),
