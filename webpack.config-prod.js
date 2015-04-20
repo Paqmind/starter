@@ -1,5 +1,5 @@
 let Webpack = require("webpack");
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
+//let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 export default {
   // Compilation target http://webpack.github.io/docs/configuration.html#target
@@ -14,12 +14,12 @@ export default {
   // Capture timing information http://webpack.github.io/docs/configuration.html#profile
   profile: false,
 
-  // Entry files
+  // Entry files http://webpack.github.io/docs/configuration.html#entry
   entry: {
     main: "./frontend/app?main",
   },
 
-  // Output files
+  // Output files http://webpack.github.io/docs/configuration.html#output
   output: {
     path: __dirname + "/public",
     publicPath: "/public/",
@@ -30,89 +30,85 @@ export default {
     pathinfo: false,
   },
 
-  // Loaders
+  // Module http://webpack.github.io/docs/configuration.html#module
   module: {
-    loaders: [
+    loaders: [ // http://webpack.github.io/docs/loaders.html
       // JS
-      {test: /\.(js(\?.*)?)$/, loaders: ["babel-loader"], exclude: /node_modules/ }, // ?stage=2 ????
+      {test: /\.(js(\?.*)?)$/, loaders: ["babel"], exclude: /node_modules/ }, // ?stage=2 ????
 
       // JSON
-      {test: /\.(json(\?.*)?)$/,  loaders: ["json-loader"]},
-      {test: /\.(json5(\?.*)?)$/, loaders: ["json5-loader"]},
+      {test: /\.(json(\?.*)?)$/,  loaders: ["json"]},
+      {test: /\.(json5(\?.*)?)$/, loaders: ["json5"]},
 
       // RAW
-      {test: /\.(txt(\?.*)?)$/, loaders: ["raw-loader"]},
+      {test: /\.(txt(\?.*)?)$/, loaders: ["raw"]},
 
       // URL
-      {test: /\.(jpg(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(jpeg(\?.*)?)$/,  loaders: ["url-loader?limit=10000"]},
-      {test: /\.(png(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(gif(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(svg(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(woff(\?.*)?)$/,  loaders: ["url-loader?limit=100000"]},
-      {test: /\.(woff2(\?.*)?)$/, loaders: ["url-loader?limit=100000"]},
+      {test: /\.(jpg(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(jpeg(\?.*)?)$/,  loaders: ["url?limit=10000"]},
+      {test: /\.(png(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(gif(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(svg(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(woff(\?.*)?)$/,  loaders: ["url?limit=100000"]},
+      {test: /\.(woff2(\?.*)?)$/, loaders: ["url?limit=100000"]},
 
       // FILE
-      {test: /\.(ttf(\?.*)?)$/, loaders: ["file-loader"]},
-      {test: /\.(eot(\?.*)?)$/, loaders: ["file-loader"]},
-      {test: /\.(wav(\?.*)?)$/, loaders: ["file-loader"]},
-      {test: /\.(mp3(\?.*)?)$/, loaders: ["file-loader"]},
+      {test: /\.(ttf(\?.*)?)$/, loaders: ["file"]},
+      {test: /\.(eot(\?.*)?)$/, loaders: ["file"]},
+      {test: /\.(wav(\?.*)?)$/, loaders: ["file"]},
+      {test: /\.(mp3(\?.*)?)$/, loaders: ["file"]},
 
       // HTML
-      {test: /\.(html(\?.*)?)$/, loaders: ["html-loader"]},
+      {test: /\.(html(\?.*)?)$/, loaders: ["html"]},
 
       // MARKDOWN
-      {test: /\.(md(\?.*)?)$/, loaders: ["html-loader", "markdown-loader"]},
+      {test: /\.(md(\?.*)?)$/, loaders: ["html", "markdown"]},
 
       // CSS
-      {test: /\.(css(\?.*)?)$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
+      {test: /\.(css(\?.*)?)$/, loaders: ["style", "css"]}, // loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
 
       // LESS
-      {test: /\.(less(\?.*)?)$/, loader: ExtractTextPlugin.extract("style-loader", ["css-loader", "less-loader"])},
+      {test: /\.(less(\?.*)?)$/, loaders: ["style", "css", "less"]}, // loader: ExtractTextPlugin.extract("style-loader", ["css-loader", "less-loader"])},
     ],
   },
 
-  resolveLoader: {
-    root: __dirname + "/node_modules",
-    alias: {},
-  },
-
-  // Externals
-  externals: [],
-
+  // Module resolving http://webpack.github.io/docs/configuration.html#resolve
   resolve: {
-    root: __dirname + "/app",
+    // Abs. path with modules
+    root: __dirname + "/frontend",
+
+    // node_modules and like that
     modulesDirectories: ["web_modules", "node_modules"],
   },
 
+  // Loader resolving http://webpack.github.io/docs/configuration.html#resolveloader
+  resolveLoader: {
+    // Abs. path with loaders
+    root: __dirname + "/node_modules",
+
+    alias: {},
+  },
+
+  // Keep bundle dependencies http://webpack.github.io/docs/configuration.html#externals
+  externals: [],
+
+  // Plugins http://webpack.github.io/docs/list-of-plugins.html
   plugins: [
-    function () {
-      this.plugin("done", function (stats) {
-        let jsonStats = stats.toJson({
-          chunkModules: true,
-          exclude: [
-            /node_modules[\\\/]react(-router)?[\\\/]/,
-            /node_modules[\\\/]items-store[\\\/]/
-          ]
-        });
-        jsonStats.publicPath = "/public/";
-        require("fs").writeFileSync(__dirname + "/public/stats.json", JSON.stringify(jsonStats));
-      });
-    },
-    new Webpack.PrefetchPlugin("react"),
-    new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
+    //new Webpack.PrefetchPlugin("react"),
+    //new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
     //new Webpack.optimize.CommonsChunkPlugin("commons", "commons.js?[chunkhash]"),
-    new ExtractTextPlugin("[name].css?[contenthash]"),
-    new Webpack.optimize.UglifyJsPlugin(),
-    new Webpack.optimize.DedupePlugin(),
+    //new ExtractTextPlugin("[name].css?[contenthash]"),
+    //new Webpack.optimize.UglifyJsPlugin(),
+    //new Webpack.optimize.DedupePlugin(),
     new Webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
     }),
-    new Webpack.NoErrorsPlugin(),
+    //new Webpack.NoErrorsPlugin(),
   ],
 
+  // CLI mirror http://webpack.github.io/docs/configuration.html#devserver
   devServer: {
     stats: {
       cached: false,

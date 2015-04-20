@@ -34,41 +34,41 @@ export default {
   module: {
     loaders: [
       // JS
-      {test: /\.(js(\?.*)?)$/, loaders: ["babel-loader"], exclude: /node_modules/ }, // ?stage=2 ????
+      {test: /\.(js(\?.*)?)$/, loaders: ["babel"], exclude: /node_modules/ }, // ?stage=2 ????
 
       // JSON
-      {test: /\.(json(\?.*)?)$/,  loaders: ["json-loader"]},
-      {test: /\.(json5(\?.*)?)$/, loaders: ["json5-loader"]},
+      {test: /\.(json(\?.*)?)$/,  loaders: ["json"]},
+      {test: /\.(json5(\?.*)?)$/, loaders: ["json5"]},
 
       // RAW
-      {test: /\.(txt(\?.*)?)$/, loaders: ["raw-loader"]},
+      {test: /\.(txt(\?.*)?)$/, loaders: ["raw"]},
 
       // URL
-      {test: /\.(jpg(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(jpeg(\?.*)?)$/,  loaders: ["url-loader?limit=10000"]},
-      {test: /\.(png(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(gif(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(svg(\?.*)?)$/,   loaders: ["url-loader?limit=10000"]},
-      {test: /\.(woff(\?.*)?)$/,  loaders: ["url-loader?limit=100000"]},
-      {test: /\.(woff2(\?.*)?)$/, loaders: ["url-loader?limit=100000"]},
+      {test: /\.(jpg(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(jpeg(\?.*)?)$/,  loaders: ["url?limit=10000"]},
+      {test: /\.(png(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(gif(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(svg(\?.*)?)$/,   loaders: ["url?limit=10000"]},
+      {test: /\.(woff(\?.*)?)$/,  loaders: ["url?limit=100000"]},
+      {test: /\.(woff2(\?.*)?)$/, loaders: ["url?limit=100000"]},
 
       // FILE
-      {test: /\.(ttf(\?.*)?)$/, loaders: ["file-loader"]},
-      {test: /\.(eot(\?.*)?)$/, loaders: ["file-loader"]},
-      {test: /\.(wav(\?.*)?)$/, loaders: ["file-loader"]},
-      {test: /\.(mp3(\?.*)?)$/, loaders: ["file-loader"]},
+      {test: /\.(ttf(\?.*)?)$/, loaders: ["file"]},
+      {test: /\.(eot(\?.*)?)$/, loaders: ["file"]},
+      {test: /\.(wav(\?.*)?)$/, loaders: ["file"]},
+      {test: /\.(mp3(\?.*)?)$/, loaders: ["file"]},
 
       // HTML
-      {test: /\.(html(\?.*)?)$/, loaders: ["html-loader"]},
+      {test: /\.(html(\?.*)?)$/, loaders: ["html"]},
 
       // MARKDOWN
-      {test: /\.(md(\?.*)?)$/, loaders: ["html-loader", "markdown-loader"]},
+      {test: /\.(md(\?.*)?)$/, loaders: ["html", "markdown"]},
 
       // CSS
-      {test: /\.(css(\?.*)?)$/, loaders: ["null-loader", "css-loader"]},
+      {test: /\.(css(\?.*)?)$/, loaders: ["null", "css"]},
 
       // LESS
-      {test: /\.(less(\?.*)?)$/, loaders: ["null-loader", "css-loader", "less-loader"]},
+      {test: /\.(less(\?.*)?)$/, loaders: ["null", "css", "less"]},
     ],
   },
 
