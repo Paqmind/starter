@@ -61,7 +61,7 @@ $ npm run dev
 $ npm run nodemon
 ```
 
-4) Open `http://localhost:80/` in your browser
+4) Open `http://localhost:80/`
 
 ## Production
 
@@ -77,7 +77,7 @@ $ npm run prod
 $ NODE_ENV=production npm start
 ```
 
-4) Open this `http://localhost:80/` in your browser
+4) Open `http://localhost:80/`
 
 ## Build visualization
 
@@ -94,7 +94,7 @@ with `$ npm install xxx-loader --save`
 ## Multi page app
 
 1. Add an entry point to `webpack.config-xxx.js`
-2. Add a new top-level react component in `app` (`xxxRoutes.js`, `xxxStoreDescriptions.js`, `xxxStores.js`).
-3. (Optional) Enable `commonsChunk` in `webpack-production.config.js` and add `<script src="{{ commonsUrl }}"></script>` to `frontend/react-prerender.html`.
-4. Modify the server code to require, serve and prerender the other entry point.
-5. Restart compilation.
+2. Add a new top-level react component in `app` (`xxxRoutes.js`, `xxxStoreDescriptions.js`, `xxxStores.js`)
+3. (Optional) Enable `commonsChunk` in `webpack-production.config.js` and add `<script src="{{ commonsUrl }}"></script>` to `frontend/react-prerender.html`
+4. Modify the server code to require, serve and prerender the other entry point
+5. Restart compilation
