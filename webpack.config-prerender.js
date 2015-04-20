@@ -1,5 +1,5 @@
 let Webpack = require("webpack");
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
+//let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 export default {
   // Compilation target http://webpack.github.io/docs/configuration.html#target
@@ -14,12 +14,12 @@ export default {
   // Capture timing information http://webpack.github.io/docs/configuration.html#profile
   profile: false,
 
-  // Entry files
+  // Entry files http://webpack.github.io/docs/configuration.html#entry
   entry: {
     main: "./frontend/prerender?main",
   },
 
-  // Output files
+  // Output files http://webpack.github.io/docs/configuration.html#output
   output: {
     path: __dirname + "/public",
     publicPath: "/public/",
@@ -30,9 +30,9 @@ export default {
     pathinfo: false,
   },
 
-  // Loaders
+  // Module http://webpack.github.io/docs/configuration.html#module
   module: {
-    loaders: [
+    loaders: [ // http://webpack.github.io/docs/loaders.html
       // JS
       {test: /\.(js(\?.*)?)$/, loaders: ["babel"], exclude: /node_modules/ }, // ?stage=2 ????
 
@@ -72,29 +72,37 @@ export default {
     ],
   },
 
+  // Module resolving http://webpack.github.io/docs/configuration.html#resolve
+  resolve: {
+    // Abs. path with modules
+    root: __dirname + "/frontend",
+
+    // node_modules and like that
+    modulesDirectories: ["web_modules", "node_modules"],
+  },
+
+  // Loader resolving http://webpack.github.io/docs/configuration.html#resolveloader
   resolveLoader: {
+    // Abs. path with loaders
     root: __dirname + "/node_modules",
     alias: {"react-proxy$": "react-proxy/unavailable"},
   },
 
-  // Externals
-  externals: [
-    /^react(\/.*)?$/,
-    "superagent",
-    "async"
-  ],
+  // Keep bundle dependencies http://webpack.github.io/docs/configuration.html#externals
+  //externals: [
+  //  /^react(\/.*)?$/,
+  //  "superagent",
+  //  "async"
+  //],
 
-  resolve: {
-    root: __dirname + "/app",
-    modulesDirectories: ["web_modules", "node_modules"],
-  },
-
+  // Plugins http://webpack.github.io/docs/list-of-plugins.html
   plugins: [
-    new Webpack.PrefetchPlugin("react"),
-    new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
-    new Webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+    //new Webpack.PrefetchPlugin("react"),
+    //new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
+    //new Webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
   ],
 
+  // CLI mirror http://webpack.github.io/docs/configuration.html#devserver
   devServer: {
     stats: {
       cached: false,

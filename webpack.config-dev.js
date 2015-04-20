@@ -93,19 +93,19 @@ export default {
 
   // Plugins http://webpack.github.io/docs/list-of-plugins.html
   plugins: [
-    //function () {
-    //  this.plugin("done", function (stats) {
-    //    let jsonStats = stats.toJson({
-    //      chunkModules: true,
-    //      exclude: [
-    //        /node_modules[\\\/]react(-router)?[\\\/]/,
-    //        /node_modules[\\\/]items-store[\\\/]/
-    //      ]
-    //    });
-    //    jsonStats.publicPath = "http://localhost:2992/public/";
-    //    require("fs").writeFileSync(__dirname + "/public/stats.json", JSON.stringify(jsonStats));
-    //  });
-    //},
+    function () {
+      this.plugin("done", function (stats) {
+        let jsonStats = stats.toJson({
+          chunkModules: true,
+          exclude: [
+            /node_modules[\\\/]react(-router)?[\\\/]/,
+            /node_modules[\\\/]items-store[\\\/]/
+          ]
+        });
+        jsonStats.publicPath = "http://localhost:2992/public/";
+        require("fs").writeFileSync(__dirname + "/public/stats.json", JSON.stringify(jsonStats));
+      });
+    },
     //new Webpack.PrefetchPlugin("react"),
     //new Webpack.PrefetchPlugin("react/lib/ReactComponentBrowserEnvironment"),
   ],

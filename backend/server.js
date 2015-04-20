@@ -11,9 +11,9 @@ let uuid = require("uuid");
 let DB = require("backend/db");
 
 // require the page rendering logic
-let renderApplication = Config.get("app-prerender") ?
-  require("public/prerender.main.js") :
-  require("frontend/simple.js");
+let renderApplication = require("frontend/simple.js"); // Config.get("app-prerender") ?
+  //require("public/prerender.main.js") :
+  //require("frontend/simple.js");
 
 // load bundle information from stats
 let stats = require("public/stats.json");
