@@ -13,6 +13,7 @@ Differences:
 * Nodemon by default (dev)
 * LESS is kept, SASS / Stylus are removed
 * mentions of CoffeeScript are removed ;)
+* uses nunjucks templates on backend
 
 ---
 
@@ -21,21 +22,20 @@ Differences:
 ## Features
 
 * Compilation with Webpack
-* React and JSX
-* React-Router
+* React, React-Router, JSX
 * Stylesheets can be CSS, LESS or mixed
 * Embedded resources like images or fonts use DataUrls if appropriate
-* A simple flag loads a react component (and dependencies) on demand.
+* Optional lazyload for any React components
 * Development
   * Hot Module Replacement development server (LiveReload for Stylesheets and React components enabled)
   * SourceMaps
 * Production
   * Server example for prerendering for React components
-  * Initial data inlined in page
+  * Isomorphic app (initial data inlined in page)
   * Long Term Caching through file hashes enabled
   * Generate separate css file to avoid FOUC
   * Minimized CSS and javascript
-* You can also require markdown or text files for your content.
+* You can also require markdown or text files for your content
 
 ## Local Installation
 
@@ -56,22 +56,12 @@ $ npm install && bin/install
 $ npm run dev
 ```
 
-3) Start the Nodemon server in another terminal
+3) Start the Nodemon server (second terminal)
 ```
 $ npm run nodemon
 ```
 
-4) Open this url in your browser
-```
-http://localhost:8080/
-```
-
-It automatically recompiles when files are changed. When a hot-replacement-enabled file is changed (i. e. stylesheets or React components) the module is hot-replaced. If Hot Replacement is not possible the page is refreshed.
-
-Hot Module Replacement has a performance impact on compilation.
-
-Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/webpack-dev-server.html).
-
+4) Open `http://localhost:80/` in your browser
 
 ## Production
 
@@ -82,20 +72,12 @@ Also check the [webpack-dev-server documentation](http://webpack.github.io/docs/
 $ npm run prod
 ```
 
-3) Start the NodeJS server in production mode
+3) Start the NodeJS server (second terminal)
 ```
 $ NODE_ENV=production npm start
 ```
 
-4) Open this url in your browser
-```
-http://localhost:80/
-```
-
-The server is at `backend/app-express.js`
-
-The production setting builds two configurations: one for the client (`public/main.js`) and one for the serverside prerendering (`public/prerender.main.js`).
-
+4) Open this `http://localhost:80/` in your browser
 
 ## Build visualization
 
@@ -103,20 +85,16 @@ After a production build you may want to visualize your modules and chunks tree.
 
 Use the [analyse tool](http://webpack.github.io/analyse/) with the file at `public/stats.json`.
 
-
 ## Loaders and file types
 
-Many file types are preconfigured, but not every loader is installed. If you get an error like `Cannot find module "xxx-loader"`, you'll need to install the loader with `npm install xxx-loader --save` and restart the compilation.
+Many file types are preconfigured, but not every loader is installed.
+If you get an error like `Cannot find module "xxx-loader"`, you'll need to install the loader
+with `$ npm install xxx-loader --save`
 
+## Multi page app
 
-## Common changes to the configuration
-
-### Add more entry points
-
-(for a multi page app)
-
-1. Add an entry point to `make-webpack-config.js` (`let entry`).
+1. Add an entry point to `webpack.config-xxx.js`
 2. Add a new top-level react component in `app` (`xxxRoutes.js`, `xxxStoreDescriptions.js`, `xxxStores.js`).
-3. (Optional) Enable `commonsChunk` in `webpack-production.config.js` and add `<script src="COMMONS_URL"></script>` to `frontend/prerender.html`.
+3. (Optional) Enable `commonsChunk` in `webpack-production.config.js` and add `<script src="{{ commonsUrl }}"></script>` to `frontend/react-prerender.html`.
 4. Modify the server code to require, serve and prerender the other entry point.
 5. Restart compilation.
