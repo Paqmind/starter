@@ -113,11 +113,11 @@ export default {
     //new ExtractTextPlugin("[name].css?[contenthash]"),
     //new Webpack.optimize.UglifyJsPlugin(),
     //new Webpack.optimize.DedupePlugin(),
-    new Webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production")
-      }
-    }),
+    //new Webpack.DefinePlugin({
+    //  "process.env": {
+    //    NODE_ENV: JSON.stringify("production")
+    //  }
+    //}),
     //new Webpack.NoErrorsPlugin(),
   ],
 
