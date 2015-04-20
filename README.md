@@ -24,18 +24,16 @@ Differences:
 * Compilation with Webpack
 * React, React-Router, JSX
 * Stylesheets can be CSS, LESS or mixed
-* Embedded resources like images or fonts use DataUrls if appropriate
-* Optional lazyload for any React components
-* Development
-  * Hot Module Replacement development server (LiveReload for Stylesheets and React components enabled)
-  * SourceMaps
-* Production
-  * Server example for prerendering for React components
-  * Isomorphic app (initial data inlined in page)
-  * Long Term Caching through file hashes enabled
-  * Generate separate css file to avoid FOUC
-  * Minimized CSS and javascript
-* You can also require markdown or text files for your content
+* [Autoembed](http://en.wikipedia.org/wiki/Data_URI_scheme) assets by threshold
+* Optional lazyload for any React component
+* Live reload for CSS styles and React components
+* Sourcemaps
+* Server example with API
+* Isomorphic app (initial data inlined in page)
+* Long term caching through file hashes enabled
+* Separate CSS file to avoid [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content)
+* Minimization, uglification etc.
+* Possibility to require markdown or text files
 
 ## Local Installation
 
